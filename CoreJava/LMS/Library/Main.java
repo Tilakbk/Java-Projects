@@ -11,7 +11,7 @@ public class Main
         int n;
         do
         {
-            System.out.println("Welcome to Library management System\n"+"0.Exit"+"1.Login\n"+"2. Create account");
+            System.out.println("Welcome to Library management System\n"+"0.Exit\n"+"1.Login\n"+"2.Create account");
 
             s= new Scanner(System.in);
             n= s.nextInt();
@@ -46,9 +46,11 @@ public class Main
             if(n!=-1)
             {
                 User user= db.getUser(n);
+                System.out.println("Welcome: "+user.getName());
             }
             else
             {
+                System.out.println("Login failed");
                 return;
             }
         }
@@ -78,7 +80,8 @@ public class Main
             {
                 User normalUser= new NormalUser(name, email, phoneNumber);
                 db.addUser(normalUser);
-            }    
+            }
+            System.out.println("User created successfully");
         }
 
     

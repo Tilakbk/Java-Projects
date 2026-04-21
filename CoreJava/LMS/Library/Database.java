@@ -11,7 +11,6 @@ public class Database
     {
         users.add(s);
         usernames.add(s.getName());
-        System.out.println("User added successfully\n"+"Welcome: "+s.getName());
     }
     
 public int login(String phoneNumber, String email)
