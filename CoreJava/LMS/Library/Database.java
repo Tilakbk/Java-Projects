@@ -11,21 +11,27 @@ public class Database
     {
         users.add(s);
         usernames.add(s.getName());
+        System.out.println("User added successfully\n"+"Welcome: "+s.getName());
     }
     
-public boolean login(String phoneNumber, String email)
+public int login(String phoneNumber, String email)
 {
-    boolean n= false;
+    int n= -1;
     for(User s: users)
     {
         if(s.getPhoneNumber().matches(phoneNumber)&&s.getEmail().matches(email))
         {
-            n=true;
+            n=users.indexOf(s);
             break;
         }
     }
 
     return n;
+}
+
+public User getUser(int n)
+{
+    return users.get(n);
 }
 
 }

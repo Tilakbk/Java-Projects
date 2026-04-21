@@ -6,27 +6,33 @@ import java.util.Scanner;
 public class Main
 {
     static Scanner s;
+    static Database db;
     public static void main(String args[])
     {
-        Database db= new Database();
-        System.out.println("Welcome to Library management System\n"+"1.Login\n"+"2. Create account");
-
-        s= new Scanner(System.in);
-        int n= s.nextInt();
-
-        switch (n) 
+        db= new Database();
+        int n;
+        do
         {
-            case 1:
-                login();
-                
-                break;
-            case 2:
-                newUser();
+            System.out.println("Welcome to Library management System\n"+"0.Exit"+"1.Login\n"+"2. Create account");
+
+            s= new Scanner(System.in);
+            n= s.nextInt();
+
+            switch (n) 
+            {
+                case 1:
+                    login();
+                    
+                    break;
+                case 2:
+                    newUser();
+            
+                default:
+                    System.out.println("Enter valid option");
+                    break;
+            }
+        } while (n!=0);
         
-            default:
-                System.out.println("Enter valid option");
-                break;
-        }
 
     
     }
@@ -38,6 +44,15 @@ public class Main
 
             System.out.println("Enter your email");
             String email= s.next();
+            int n= db.login(phoneNumber, email);
+            if(n!=-1)
+            {
+                User user= db.getUser(n);
+            }
+            else
+            {
+                return;
+            }
         }
     
     public static void newUser()
@@ -57,12 +72,14 @@ public class Main
             {
             
                 User admin= new Admin(name,email,phoneNumber);
+                db.addUser(admin);
             }
             
 
             else
             {
                 User normalUser= new NormalUser(name, email, phoneNumber);
+                db.addUser(normalUser);
             }    
         }
 
