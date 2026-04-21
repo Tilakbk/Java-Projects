@@ -2,6 +2,7 @@ package CoreJava.LMS.Library;
 
 public class Admin extends User
 {
+    
     public Admin(String name)
     {
         super(name);
