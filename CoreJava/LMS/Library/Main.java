@@ -1,6 +1,4 @@
-package CoreJava.LMS;
-import CoreJava.LMS.Library.*;
-
+package CoreJava.LMS.Library;
 import java.util.Scanner;
 
 public class Main
@@ -28,7 +26,7 @@ public class Main
                     newUser();
             
                 default:
-                    System.out.println("Enter valid option");
+                  
                     break;
             }
         } while (n!=0);
@@ -58,7 +56,7 @@ public class Main
     public static void newUser()
         {
             System.out.println("Enter your name");
-            String name= s.nextLine();
+            String name= s.next();
 
             System.out.println("Enter your email");
             String email= s.next();
