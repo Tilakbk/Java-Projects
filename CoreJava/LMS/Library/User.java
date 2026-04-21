@@ -1,6 +1,6 @@
 package CoreJava.LMS.Library;
 
-public class User
+public abstract class User
 {
     protected String name;
     protected String email;
@@ -38,4 +38,6 @@ public class User
     {
         return phoneNumber;
     }
+
+    public abstract void menu();
 }

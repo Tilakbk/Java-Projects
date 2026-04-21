@@ -11,4 +11,9 @@ public class NormalUser extends User
     {
         super(name,email,phoneNumber);
     }
+
+    public void menu()
+    {
+        System.out.println("It shows normal user menu");
+    }
 }

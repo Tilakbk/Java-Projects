@@ -18,15 +18,18 @@ public class Main
 
             switch (n) 
             {
+                case 0:
+                    break;
                 case 1:
                     login();
                     
                     break;
                 case 2:
                     newUser();
+                    break;
             
                 default:
-                  
+                    System.out.println("Enter a valid number");
                     break;
             }
         } while (n!=0);
@@ -46,7 +49,7 @@ public class Main
             if(n!=-1)
             {
                 User user= db.getUser(n);
-                System.out.println("Welcome: "+user.getName());
+               user.menu();
             }
             else
             {
@@ -68,19 +71,22 @@ public class Main
 
             System.out.println("1. Admin\n"+ "2. Normal user");
             int n=s.nextInt();
+            User user;
             if(n==1)
             {
             
-                User admin= new Admin(name,email,phoneNumber);
-                db.addUser(admin);
+                user= new Admin(name,email,phoneNumber);
+                
             }
             
 
             else
             {
-                User normalUser= new NormalUser(name, email, phoneNumber);
-                db.addUser(normalUser);
+                user= new NormalUser(name, email, phoneNumber);
+                
             }
+            db.addUser(user);
+            user.menu();
             System.out.println("User created successfully");
         }
 
