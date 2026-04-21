@@ -8,9 +8,10 @@ public class Main
     static Scanner s;
     public static void main(String args[])
     {
+        Database db= new Database();
         System.out.println("Welcome to Library management System\n"+"1.Login\n"+"2. Create account");
 
-        Scanner s= new Scanner(System.in);
+        s= new Scanner(System.in);
         int n= s.nextInt();
 
         switch (n) 
@@ -27,7 +28,7 @@ public class Main
                 break;
         }
 
-       
+    
     }
 
     public static void login()
@@ -39,7 +40,7 @@ public class Main
             String email= s.next();
         }
     
-        public static void newUser()
+    public static void newUser()
         {
             System.out.println("Enter your name");
             String name= s.nextLine();
@@ -52,17 +53,18 @@ public class Main
 
             System.out.println("1. Admin\n"+ "2. Normal user");
             int n=s.nextInt();
-            if(n==2)
+            if(n==1)
             {
-                
+            
+                User admin= new Admin(name,email,phoneNumber);
             }
+            
 
             else
             {
-                
-            }
+                User normalUser= new NormalUser(name, email, phoneNumber);
+            }    
         }
-     
 
     
 }
