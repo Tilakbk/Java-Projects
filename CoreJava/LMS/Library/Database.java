@@ -81,6 +81,7 @@ public void addBooks(Books book)
 {
     books.add(book);
     booknames.add(book.getName());
+    saveBooks();
 }
 
 public void getUsers()
@@ -136,5 +137,73 @@ public void getUsers()
             System.err.println(e.toString());
         }
     }
+
+     public void saveBooks()
+    {
+       String text1= "";
+        for (Books b: books ) {
+            text1= text1+b.toString2()+"<NewBook/>\n";
+        }
+
+        try (PrintWriter pw= new PrintWriter(booksFile)) {
+            pw.print(text1);
+            
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
+    }
+
+
+    public void getBooks()
+{
+    String text1="";
+    try {
+        BufferedReader br1 = new BufferedReader(new FileReader(booksFile));
+        String s;
+        while ((s=br1.readLine())!=null) {
+            text1=text1+s;
+            
+        }
+        br1.close();
+    } 
+    catch (Exception e) {
+        System.err.println(e.toString());
+    }
+
+    if (!text1.matches("")|| !text1.isEmpty()) {
+        String[] a1= text1.split("<NewBook/>");
+        for (String s : a1) {
+            
+            Books book= parseBook(s);
+            books.add(book);
+            booknames.add(book.getName());
+
+
+
+            
+        }
+        
+    }
+
+}
+
+ public Books parseBook(String s)
+    {
+        String[] a= s.split("<N/>");
+        Books book = new Books();
+        book.setName(a[0]);
+        book.setAuthor(a[1]);
+        book.setPublisher(a[2]);
+        book.setAddress(a[3]);
+        book.setQty(Integer.parseInt(a[4]));
+        book.setPrice(Double.parseDouble(a[5]));
+        book.setBrwcopies(Integer.parseInt(a[6]));
+
+        return book;
+
+
+
+    }
+
 
 }

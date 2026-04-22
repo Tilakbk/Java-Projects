@@ -12,6 +12,10 @@ public class Books {
     private double price;
     private int brwcopies;
 
+    public Books()
+    {
+
+    }
     public Books(String name, String author, String publisher, String   address, String status, int qty,
             double price,int brwcopies) 
     {
@@ -64,8 +68,46 @@ public class Books {
         return brwcopies;
     }
 
-    
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public void setBrwcopies(int brwcopies) {
+        this.brwcopies = brwcopies;
+    }
 
     
+    public String toString2()
+    {
+        String text =name+"<N/>"+author+"<N/>"+publisher+"<N/>"+address+"<N/>"+String.valueOf(qty)+"<N/>"+String.valueOf(price)+"<N/>"+String.valueOf(brwcopies)+"<NewBook/>";
+        
+        return text;    
+    }
+    
+   
     
 }
