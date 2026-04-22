@@ -86,8 +86,9 @@ public class Main
                 
             }
             db.addUser(user);
+             System.out.println("User created successfully");
             user.menu();
-            System.out.println("User created successfully");
+           
         }
 
     
