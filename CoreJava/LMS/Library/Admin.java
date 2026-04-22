@@ -22,7 +22,7 @@ public class Admin extends User
     }
 
     @Override
-    public void menu()
+    public void menu(Database database, User user)
     {
         System.out.println("1. View Books");
         System.out.println("2. Add Books");
@@ -35,7 +35,7 @@ public class Admin extends User
         Scanner s= new Scanner(System.in);
         int n= s.nextInt();
         n--;
-        this.operations[n].oper();
-       
+        this.operations[n].oper(database,user);
+       s.close();
     }
 }

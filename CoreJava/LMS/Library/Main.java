@@ -49,7 +49,8 @@ public class Main
             if(n!=-1)
             {
                 User user= db.getUser(n);
-               user.menu();
+                user.menu(db,user);
+               
             }
             else
             {
@@ -87,7 +88,7 @@ public class Main
             }
             db.addUser(user);
              System.out.println("User created successfully");
-            user.menu();
+            user.menu(db,user);
            
         }
 

@@ -2,6 +2,6 @@ package CoreJava.LMS.Library;
 
 public interface IOOperation
 {
-    void oper();
+    void oper(Database database, User user);
     
 } 
