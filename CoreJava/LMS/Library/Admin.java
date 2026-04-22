@@ -38,4 +38,11 @@ public class Admin extends User
         this.operations[n].oper(database,user);
        s.close();
     }
+
+    @Override
+    public String toString() {
+      return (name+"<N/>"+email+"<N/>"+phoneNumber+"<N/>"+"Admin");
+    }
+
+    
 }
