@@ -237,6 +237,36 @@ public void getUsers()
     {
         books.remove(i);
         booknames.remove(i);
+        saveBooks();
+    }
+
+    public void deleteAllData()
+    {
+             if (userFile.exists()) {
+            try
+            {   
+                userFile.delete();
+                userFile.createNewFile();
+            }
+            
+            catch(IOException e)
+            {
+                System.err.println("e");
+            }
+        }
+
+        if (booksFile.exists()) {
+            try
+            {
+                booksFile.delete();
+                booksFile.createNewFile();
+            }
+            catch(IOException e)
+            {
+                System.err.println(e);
+            }
+            
+        }
     }
 
 }
