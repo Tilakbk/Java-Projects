@@ -28,7 +28,8 @@ public class AddBook implements IOOperation
 
               database.addBooks(book);
               System.out.println("Book added successfully");
-
+            
+              user.menu(database, user);
 
     }
 

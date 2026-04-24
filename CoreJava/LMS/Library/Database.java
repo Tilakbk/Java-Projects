@@ -48,6 +48,7 @@ public class Database
             
         }
         getUsers();
+        getBooks();
     }
 
     public void addUser(User s)
@@ -203,6 +204,11 @@ public void getUsers()
 
 
 
+    }
+
+    public ArrayList<Books> getAllBooks()
+    {
+        return books;
     }
 
 
