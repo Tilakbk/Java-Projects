@@ -36,6 +36,7 @@ public class Admin extends User
         int n= s.nextInt();
         n--;
         this.operations[n].oper(database,user);
+        
        
     }
 

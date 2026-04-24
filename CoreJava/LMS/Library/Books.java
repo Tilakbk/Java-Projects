@@ -7,7 +7,7 @@ public class Books {
     private String author;
     private String publisher;
     private String address;
-    private String status;
+   
     private int qty;
     private double price;
     private int brwcopies;
@@ -23,7 +23,7 @@ public class Books {
         this.author = author;
         this.publisher = publisher;
         this.address = address;
-        this.status = status;
+        
         this.qty = qty;
         this.price=price;
         this.brwcopies = brwcopies;
@@ -31,7 +31,7 @@ public class Books {
 
     public String toString()
     {
-        String text ="Name:"+name+" author:"+author+" publisher:"+publisher+" address:"+address+" status:"+status+"     Quantity:"+String.valueOf(qty)+" price:"+String.valueOf(price)+" Borrow copies: "+String.valueOf(brwcopies);
+        String text ="Name:"+name+" author:"+author+" publisher:"+publisher+" address:"+address+" status:"+"     Quantity:"+String.valueOf(qty)+" price:"+String.valueOf(price)+" Borrow copies: "+String.valueOf(brwcopies);
         
         return text;    
     }
@@ -52,9 +52,7 @@ public class Books {
         return address;
     }
 
-    public String getStatus() {
-        return status;
-    }
+   
 
     public int getQty() {
         return qty;
@@ -84,9 +82,7 @@ public class Books {
         this.address = address;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
+   
 
     public void setQty(int qty) {
         this.qty = qty;
