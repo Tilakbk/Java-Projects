@@ -300,9 +300,10 @@ public void getUsers()
 
     }
 
-    public void addOrder(Order ord)
+    public void addOrder(Order ord,Books book,int i)
     {
         order.add(ord);
+        books.set(i, book);
         saveOrders();
     }
     

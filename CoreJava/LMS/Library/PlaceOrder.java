@@ -15,6 +15,7 @@ public class PlaceOrder implements IOOperation{
        int i= database.getBooksName(bname);
        
        if (i>-1) {
+        Books book= new Books();
         o.setBook(database.getBook(i));
         o.setUser(user);
         System.out.println("Enter Quantity");
@@ -22,7 +23,9 @@ public class PlaceOrder implements IOOperation{
         o.setQty(qty);
         
         o.setPrice(o.getPrice()*qty);
-        database.addOrder(o);
+        int bookindex= database.getBooksName(book.getName());
+        book.setQty(book.getQty()-1);
+        database.addOrder(o,book,bookindex);
         System.out.println("Ordered placed");
         
        }
@@ -30,6 +33,8 @@ public class PlaceOrder implements IOOperation{
        {
         System.out.println("Book doesnot exists");
        }
+
+       user.menu(database, user);
     }
     
 }
