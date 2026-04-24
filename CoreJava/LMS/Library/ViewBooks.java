@@ -17,6 +17,8 @@ public class ViewBooks implements IOOperation
         }
         
        }
+
+       user.menu(database,user);
         
     }
 

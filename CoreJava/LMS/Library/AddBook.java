@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class AddBook implements IOOperation 
 {
+    Scanner s;
     public void oper(Database database, User user)
     {
-              Scanner s=new Scanner(System.in);
+              s=new Scanner(System.in);
               Books book= new Books();
               System.out.println("Enter Book name");
               book.setName(s.next());
@@ -31,5 +32,6 @@ public class AddBook implements IOOperation
               user.menu(database, user);
 
     }
+    
 
 }

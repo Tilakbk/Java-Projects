@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class NormalUser extends User 
 {
+    Scanner s;
     public NormalUser(String name)
     {
         super(name);
@@ -32,7 +33,7 @@ public class NormalUser extends User
         System.out.println("6. Return Book");
         System.out.println("7. Exit");
 
-        Scanner s= new Scanner(System.in);
+        s= new Scanner(System.in);
         int n= s.nextInt();
         n--;
         this.operations[n].oper( database,user);
