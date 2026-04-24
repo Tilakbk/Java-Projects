@@ -31,7 +31,7 @@ public class Books {
 
     public String toString()
     {
-        String text ="Name:"+name+" author:"+author+" publisher:"+publisher+" address:"+address+" status:"+"     Quantity:"+String.valueOf(qty)+" price:"+String.valueOf(price)+" Borrow copies: "+String.valueOf(brwcopies);
+        String text ="Name:"+name+" author:"+author+" publisher:"+publisher+" address:"+address+"Quantity:"+String.valueOf(qty)+" price:"+String.valueOf(price)+" Borrow copies: "+String.valueOf(brwcopies);
         
         return text;    
     }

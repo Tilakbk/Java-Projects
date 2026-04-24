@@ -211,5 +211,32 @@ public void getUsers()
         return books;
     }
 
+    public int getBooksName(String bookname)
+    {
+        int i=-1;
+        for ( String bn : booknames ) {
+            if (bn.matches(bookname))
+            {
+                i= booknames.indexOf(bn);
+            }
+
+            
+        }
+        
+        return i;
+
+
+    }
+
+    public Books getBook(int i)
+    {
+        return (books.get(i));
+    }
+
+    public void deleteBook(int i)
+    {
+        books.remove(i);
+        booknames.remove(i);
+    }
 
 }
