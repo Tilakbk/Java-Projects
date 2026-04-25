@@ -24,7 +24,7 @@ public class PlaceOrder implements IOOperation{
         
         o.setPrice(o.getPrice()*qty);
         int bookindex= database.getBooksName(book.getName());
-        book.setQty(book.getQty()-1);
+        book.setQty(book.getQty()-qty);
         database.addOrder(o,book,bookindex);
         System.out.println("Ordered placed");
         
