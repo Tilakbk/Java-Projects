@@ -381,4 +381,9 @@ public Order parseOrder(String s)
     return o;
 }
 
+public ArrayList<Order> getAllOrder()
+{
+    return order;
+}
+
 }
