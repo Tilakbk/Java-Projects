@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Database
@@ -14,12 +16,14 @@ public class Database
    private ArrayList<Books> books= new ArrayList<>();
    private ArrayList<String> booknames= new ArrayList<>();
    private ArrayList<Order> order= new ArrayList<>();
+   private ArrayList<Borrowing> borrowings= new ArrayList<>();
 
 //    private File userFile= new File(Main.class.getClassLoader().getResource("\\Users").getFile());
 //    private File bookFile= new File(Main.class.getClassLoader().getResource("\\Books").getFile());
        private File userFile= new File("D:\\Java-Projects\\CoreJava\\LMS\\Data\\Users");
        private File booksFile= new File("D:\\Java-Projects\\CoreJava\\LMS\\Data\\Books");
        private File orderFile= new File("D:\\Java-Projects\\CoreJava\\LMS\\Data\\Order");
+       private File borrowingfile= new File("D:\\Java-Projects\\CoreJava\\LMS\\Data\\BorrowedBook");
        private File folder=new File("D:\\Java-Projects\\CoreJava\\LMS\\Data") ;
 
 
@@ -56,6 +60,16 @@ public class Database
         if (!orderFile.exists()) {
             try
             {orderFile.createNewFile();}
+            catch(IOException e)
+            {
+                System.err.println(e);
+            }
+
+        }
+
+        if (!borrowingfile.exists()) {
+            try
+            {borrowingfile.createNewFile();}
             catch(IOException e)
             {
                 System.err.println(e);
@@ -297,6 +311,19 @@ public void getUsers()
             }
         }
 
+         if (borrowingfile.exists()) {
+            try
+            {   
+                borrowingfile.delete();
+                borrowingfile.createNewFile();
+            }
+            
+            catch(IOException e)
+            {
+                System.err.println("e");
+            }
+        }
+
 
     }
 
@@ -387,4 +414,63 @@ public ArrayList<Order> getAllOrder()
     return order;
 }
 
+public void saveBorrowing()
+{
+     String text1= "";
+        for (Borrowing b: borrowings ) {
+            text1= text1+b.toString2()+"<NewBorrowing/>\n";
+        }
+
+        try (PrintWriter pw= new PrintWriter(borrowingfile)) {
+            pw.print(text1);
+            
+        } catch (Exception e) {
+            System.err.println(e.toString());
+        }
 }
+
+public void getBorrowing()
+{
+     String text1="";
+    try {
+        BufferedReader br1 = new BufferedReader(new FileReader(borrowingfile));
+        String s;
+        while ((s=br1.readLine())!=null) {
+            text1=text1+s;
+            
+        }
+        br1.close();
+    } 
+    catch (Exception e) {
+        System.err.println(e.toString());
+    }
+
+    if (!text1.matches("")|| !text1.isEmpty()) {
+        String[] a1= text1.split("<NewBorrowing/>");
+        for (String s : a1) {
+            
+            Borrowing borrowing= parseBorrowing(s);
+            borrowings.add(borrowing);
+
+        }
+        
+    }
+}
+
+public Borrowing parseBorrowing(String s)
+{
+        String[] a= s.split("<N/>");
+        DateTimeFormatter formatter= DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate start= LocalDate.parse(a[0],formatter);
+        LocalDate finish= LocalDate.parse(a[1], formatter);
+        User user= getUserByName(a[4]);
+        Books book= getBook(getBooksName(a[3]));
+        return new Borrowing(start,finish,book,user);
+        
+
+
+    
+}
+
+}
+
