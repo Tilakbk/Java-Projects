@@ -79,6 +79,7 @@ public class Database
         getUsers();
         getBooks();
         getOrder();
+        getBorrowing();
     }
 
     public void addUser(User s)
@@ -470,6 +471,13 @@ public Borrowing parseBorrowing(String s)
 
 
     
+}
+public void borrowBook(Borrowing borrowing,Books book,int i)
+{
+    borrowings.add(borrowing);
+    books.set(i, book);
+    saveBorrowing();
+    saveBooks();
 }
 
 }
