@@ -479,6 +479,17 @@ public void borrowBook(Borrowing borrowing,Books book,int i)
     saveBorrowing();
     saveBooks();
 }
+public ArrayList<Borrowing> getAllBorrowings()
+{
+    return borrowings;
+}
+
+public void returnBook(Borrowing b, Books book, int i) {
+   borrowings.remove(b);
+   books.set(i, book);
+   saveBorrowing();
+   saveBooks();
+}
 
 }
 
