@@ -17,16 +17,11 @@ public class ProductController {
     private ProductService productService;
 
     @Autowired
-    public void setProductService(ProductService productService) {
+    public void setProductService(ProductService productService)
+    {
         this.productService = productService;
     }
 
-
-    @GetMapping("/")
-    public String greet()
-    {
-        return "Hello";
-    }
 
     @GetMapping("/products")
     public List<Product> getAllProducts()
@@ -35,11 +30,10 @@ public class ProductController {
         return productService.getAllProducts();
     }
 
-//    @GetMapping("/products/{id}")
-//    public Product getProductById(int id)
-//    {
-//        return productService.getProductById(id);
+    @GetMapping("/product/{id}")
+    public Product getProductById(@PathVariable int id) {
+        return productService.getProductById(id);
 
-
+    }
 //    @PostMapping("/addroduct")
 }

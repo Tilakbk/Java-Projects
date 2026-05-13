@@ -44,7 +44,7 @@ const [product, setProduct] = useState(null);
           </div>
 
           <div className="product-price">
-            <span>{"$" + product.price}</span>
+            <span>{"रु " + product.price}</span>
             <button
               className={`cart-btn ${!product.productAvailable ? "disabled-btn" : ""}`}
               disabled={!product.productAvailable}
@@ -59,7 +59,7 @@ const [product, setProduct] = useState(null);
             </h6>
             <p className="release-date">
               <h6>Product listed on:</h6>
-              <i>{product.releaseDate}</i>
+              <i>{product.releasedate}</i>
             </p>
           </div>
           <div className="update-button ">

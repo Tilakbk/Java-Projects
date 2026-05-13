@@ -83,7 +83,7 @@ const Home = () => {
                     className="card-text"
                     style={{ fontWeight: "600", margin: "10px 0" }}
                   >
-                    {"$" + product.price}
+                    {"रु " + product.price}
                   </h5>
                   <button
                     className="btn btn-primary"
