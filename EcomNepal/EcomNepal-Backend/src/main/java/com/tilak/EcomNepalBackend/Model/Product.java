@@ -11,6 +11,7 @@ import java.util.Date;
 @Component
 @Data
 @Entity
+
 public class Product {
     @Id
     private int id;
