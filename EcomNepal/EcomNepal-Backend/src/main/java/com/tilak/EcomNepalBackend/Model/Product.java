@@ -5,6 +5,7 @@ import jakarta.persistence.Id;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Component
@@ -16,7 +17,7 @@ public class Product {
     private String name;
     private String desc;
     private String brand;
-    private int price;
+    private BigDecimal price;
     private String category;
     private Date releasedate;
     private boolean available;
