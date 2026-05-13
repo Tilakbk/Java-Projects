@@ -1,6 +1,8 @@
 package com.tilak.EcomNepalBackend.Controller;
 
 import com.tilak.EcomNepalBackend.Model.Product;
+import com.tilak.EcomNepalBackend.Service.ProductService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +14,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class ProductController {
 
+
+    private ProductService productService;
+
+    @Autowired
+    public void setProductService(ProductService productService) {
+        this.productService = productService;
+    }
+
+
     @GetMapping("/")
     public String greet()
     {
@@ -19,9 +30,9 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<Product> getProducts()
+    public List<Product> getAllProducts()
     {
 
-        return null ;
+        return productService.getAllProducts();
     }
 }
