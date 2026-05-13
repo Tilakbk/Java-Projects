@@ -4,6 +4,7 @@ import com.tilak.EcomNepalBackend.Model.Product;
 import com.tilak.EcomNepalBackend.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,4 +36,12 @@ public class ProductController {
 
         return productService.getAllProducts();
     }
+
+//    @GetMapping("/products/{id}")
+//    public Product getProductById(int id)
+//    {
+//        return productService.getProductById(id);
+
+
+//    @PostMapping("/addroduct")
 }
