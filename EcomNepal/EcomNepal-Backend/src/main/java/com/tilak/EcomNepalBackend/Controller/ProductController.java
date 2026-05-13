@@ -35,5 +35,5 @@ public class ProductController {
         return productService.getProductById(id);
 
     }
-//    @PostMapping("/addroduct")
+
 }
