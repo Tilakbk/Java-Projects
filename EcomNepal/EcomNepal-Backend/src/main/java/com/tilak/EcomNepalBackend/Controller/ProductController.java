@@ -4,8 +4,11 @@ import com.tilak.EcomNepalBackend.Model.Product;
 import com.tilak.EcomNepalBackend.Service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Arrays;
 import java.util.List;
@@ -52,6 +55,26 @@ public class ProductController {
         else
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
+    }
+
+    @PostMapping("/product")
+    public ResponseEntity<?> addProduct(@RequestPart Product product, @RequestPart MultipartFile imageFile)
+    {
+        try{
+           Product product1= productService.addProduct(product,imageFile);
+            return new ResponseEntity<>(product1,HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+
+    @GetMapping("/product/{id}/image")
+    public ResponseEntity<byte[]> getImageByProductId(@PathVariable int id)
+    {
+       Product product=productService.getProductById(id);
+       byte[] imagefile= product.getImageData();
+       return ResponseEntity.ok().body(imagefile);
     }
 
 }

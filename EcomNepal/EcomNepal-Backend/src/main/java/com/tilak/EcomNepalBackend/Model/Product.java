@@ -1,10 +1,7 @@
 package com.tilak.EcomNepalBackend.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.stereotype.Component;
 
@@ -25,9 +22,14 @@ public class Product {
     private BigDecimal price;
     private String category;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "DD-MM-YYYY")
+//    @JsonFormat(shape = JsonFormat.Shape.STRING,pattern = "yyyy-MM-dd")
     private Date releasedate;
     private boolean available;
     private int quantity;
+
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageData;
 
 }
