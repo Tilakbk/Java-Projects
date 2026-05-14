@@ -181,52 +181,52 @@ npm run preview
 
 Here's a visual walkthrough of the EcomNepal application:
 
-### 1. Home Page
+
 ![Screenshot 1](ScreenShots/Screenshot%20(326).png)
 
-### 2. Product Display
+
 ![Screenshot 2](ScreenShots/Screenshot%20(327).png)
 
-### 3. Product Details
+
 ![Screenshot 3](ScreenShots/Screenshot%20(328).png)
 
-### 4. Add to Cart
+
 ![Screenshot 4](ScreenShots/Screenshot%20(329).png)
 
-### 5. Shopping Cart View
+
 ![Screenshot 5](ScreenShots/Screenshot%20(330).png)
 
-### 6. Cart Management
+
 ![Screenshot 6](ScreenShots/Screenshot%20(331).png)
 
-### 7. Product Addition
+
 ![Screenshot 7](ScreenShots/Screenshot%20(332).png)
 
-### 8. Add Product Form
+
 ![Screenshot 8](ScreenShots/Screenshot%20(333).png)
 
-### 9. Product Updates
+
 ![Screenshot 9](ScreenShots/Screenshot%20(334).png)
 
-### 10. Update Product Interface
+
 ![Screenshot 10](ScreenShots/Screenshot%20(335).png)
 
-### 11. Checkout Process
+
 ![Screenshot 11](ScreenShots/Screenshot%20(336).png)
 
-### 12. Checkout Confirmation
+
 ![Screenshot 12](ScreenShots/Screenshot%20(337).png)
 
-### 13. Cart Summary
+
 ![Screenshot 13](ScreenShots/Screenshot%20(338).png)
 
-### 14. Order Completion
+
 ![Screenshot 14](ScreenShots/Screenshot%20(339).png)
 
-### 15. Navigation Features
+
 ![Screenshot 15](ScreenShots/Screenshot%20(340).png)
 
-### 16. Final Interface
+
 ![Screenshot 16](ScreenShots/Screenshot%20(341).png)
 
 ## 📡 API Documentation
