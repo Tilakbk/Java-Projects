@@ -13,11 +13,15 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
+@CrossOrigin
 @RestController
 public class JobController
 {
     @Autowired
     private JobService jobService;
+
+
+
     @Hidden
     @RequestMapping(value = "/")
     public void redirect(HttpServletResponse response) throws IOException {
@@ -38,4 +42,12 @@ public class JobController
         Post data= jobService.addJob(post);
         return new ResponseEntity<>(data,HttpStatus.CREATED);
     }
+
+    @GetMapping("/posts/{query}")
+    public ResponseEntity<List<Post>> search(@PathVariable String query)
+    {
+        List<Post> result= jobService.search(query);
+        return new ResponseEntity<>(result,HttpStatus.FOUND);
+    }
 }
+

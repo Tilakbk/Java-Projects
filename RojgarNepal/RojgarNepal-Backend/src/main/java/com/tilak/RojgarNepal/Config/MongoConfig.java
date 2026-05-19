@@ -1,7 +1,7 @@
 package com.tilak.RojgarNepal.Config;
 
+import com.mongodb.ConnectionString;
 import com.mongodb.MongoClientSettings;
-import com.mongodb.MongoCredential;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 import org.springframework.context.annotation.Bean;
@@ -13,19 +13,10 @@ public class MongoConfig {
 
     @Bean
     public MongoClient mongoClient() {
-        MongoCredential credential = MongoCredential.createCredential(
-                "TilakBk",
-                "admin",
-                "Tilak@9862".toCharArray()
-        );
+        String uri = "mongodb+srv://TilakBk:Tilak%409862@tilak.sn36wnm.mongodb.net/RojgarNepal?retryWrites=true&w=majority&appName=Tilak";
 
         MongoClientSettings settings = MongoClientSettings.builder()
-                .credential(credential)
-                .applyToSslSettings(ssl -> ssl.enabled(true))
-                .applyToClusterSettings(cluster -> cluster
-                        .srvHost("tilak.sn36wnm.mongodb.net")  // ← only this, no .hosts()
-                )
-                .applicationName("Tilak")
+                .applyConnectionString(new ConnectionString(uri))
                 .build();
 
         return MongoClients.create(settings);
