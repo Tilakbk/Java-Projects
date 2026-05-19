@@ -16,4 +16,9 @@ public class JobService {
     public List<Post> getAllPosts() {
         return jobRepo.findAll();
     }
+
+    public Post addJob(Post post) {
+       return jobRepo.save(post);
+
+    }
 }

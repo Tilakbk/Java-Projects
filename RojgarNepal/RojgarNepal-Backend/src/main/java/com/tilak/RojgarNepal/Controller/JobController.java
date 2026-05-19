@@ -7,10 +7,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 import java.io.IOException;
@@ -33,5 +30,12 @@ public class JobController
        List<Post> posts= jobService.getAllPosts();
        return new ResponseEntity<>(posts, HttpStatus.OK);
 
+    }
+
+    @PostMapping("/post")
+    public ResponseEntity<Post> addJob(@RequestBody Post post)
+    {
+        Post data= jobService.addJob(post);
+        return new ResponseEntity<>(data,HttpStatus.CREATED);
     }
 }
