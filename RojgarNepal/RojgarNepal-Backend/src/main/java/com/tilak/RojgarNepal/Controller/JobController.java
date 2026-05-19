@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.List;
 
-@CrossOrigin
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class JobController
 {
     @Autowired
@@ -47,7 +47,7 @@ public class JobController
     public ResponseEntity<List<Post>> search(@PathVariable String query)
     {
         List<Post> result= jobService.search(query);
-        return new ResponseEntity<>(result,HttpStatus.FOUND);
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 }
 
