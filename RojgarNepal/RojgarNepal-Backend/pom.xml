@@ -57,13 +57,16 @@
 			<version>2.8.8</version>
 		</dependency>
 
-		<!-- Source: https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>3.0.0</version>
-			<scope>compile</scope>
-		</dependency>
+				<dependency>
+					<groupId>org.mongodb</groupId>
+					<artifactId>mongodb-driver-bom</artifactId>
+					<version>5.7.0</version>
+					<type>pom</type>
+					<scope>import</scope>
+				</dependency>
+
+
+
 	</dependencies>
 
 	<build>

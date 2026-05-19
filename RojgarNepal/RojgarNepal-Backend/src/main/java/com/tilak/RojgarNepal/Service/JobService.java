@@ -14,6 +14,6 @@ public class JobService {
 
 
     public List<Post> getAllPosts() {
-        return null;
+        return jobRepo.findAll();
     }
 }

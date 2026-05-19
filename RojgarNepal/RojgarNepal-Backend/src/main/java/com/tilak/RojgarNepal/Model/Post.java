@@ -1,9 +1,14 @@
 package com.tilak.RojgarNepal.Model;
 
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
+
 import java.util.Arrays;
 
+@Document(collection = "Jobpost")
 public class Post {
+
 
     private String profile;
     private String desc;
