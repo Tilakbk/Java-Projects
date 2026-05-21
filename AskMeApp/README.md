@@ -1,4 +1,4 @@
-# 🤖 AskMe - SpringAI-Powered Question Answerin Application
+# 🤖 AskMe : SpringAI-Powered Question Answerin Application
 
 A full-stack application that leverages multiple AI models (Groq, Ollama, and GenAI) to provide intelligent question-answering capabilities with a modern React frontend and Spring Boot backend.
 
