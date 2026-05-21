@@ -5,20 +5,20 @@ function App() {
   const [sharedPrompt, setSharedPrompt] = useState('');
   const [responses, setResponses] = useState({
     ollama: '',
-    anthropic: '',
-    openai: ''
+    gemini: '',
+    groq: ''
   });
   const [loading, setLoading] = useState({
     ollama: false,
-    anthropic: false,
-    openai: false
+    gemini: false,
+    groq: false
   });
   const [responseOrder, setResponseOrder] = useState([]);
 
   const models = [
-    { id: 'openai', name: 'OpenAI (GPT-4o)', color: '#2ECC71' },
-    { id: 'anthropic', name: 'Anthropic (Claude)', color: '#9B59B6' },
-    { id: 'ollama', name: 'Ollama (Gemma 2)', color: '#E67E22' }
+    { id: 'groq', name: 'Groq', color: '#2ECC71' },
+    { id: 'gemini', name: 'Gemini', color: '#9B59B6' },
+    { id: 'ollama', name: 'Ollama', color: '#E67E22' }
   ];
 
   const handlePromptChange = useCallback((value) => {
@@ -50,15 +50,15 @@ function App() {
     // Set all models to loading
     setLoading({
       ollama: true,
-      anthropic: true,
-      openai: true
+      gemini: true,
+      groq: true
     });
     
     // Initialize all responses as loading
     setResponses({
       ollama: 'Loading...',
-      anthropic: 'Loading...',
-      openai: 'Loading...'
+      gemini: 'Loading...',
+      groq: 'Loading...'
     });
     
     // Process each model independently
@@ -145,7 +145,7 @@ function App() {
               borderColor: model.color,
               // Highlight the fastest model
               boxShadow: responseOrder[0] === model.id ? `0 0 15px ${model.color}` : 'none'
-            }}
+            }} 
           >
             <h2 style={{ color: model.color }}>
               {model.name}

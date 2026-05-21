@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/openai")
+@RequestMapping("/api/groq")
 @CrossOrigin("http://localhost:5173/")
 public class GroqController {
 
