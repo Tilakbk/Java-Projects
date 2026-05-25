@@ -3,8 +3,7 @@ PUT localhost:4000/patients/12d553f1-4bb8-41a6-986c-2172b311e185
 Content-Type: application/json
 
 {
-  "name": "Alice Johnson",
-  "email": "Tilak@email.com",
+
   "address": "123 Maple Street, New York, NY 10001",
   "dateOfBirth": "1990-05-14",
   "registeredDate": "2024-01-10"
