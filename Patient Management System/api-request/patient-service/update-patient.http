@@ -3,7 +3,7 @@ PUT localhost:4000/patients/e033ebc8-9da8-43a9-931d-fd0ba17ca455
 Content-Type: application/json
 
 {
-  "name": "Tilak",
+  "name": "Apple",
   "email": "tilak@email.com",
   "address": "nepal",
   "dateOfBirth": "2001-05-14"
