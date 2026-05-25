@@ -1,11 +1,11 @@
 #Update an existing patient
-PUT localhost:4000/patients/e033ebc8-9da8-43a9-931d-fd0ba17ca455
+PUT localhost:4000/patients/fe8c7a01-3828-40f0-9b5a-be67f7612984
 Content-Type: application/json
 
 {
   "name": "Apple",
-  "email": "tilak@email.com",
-  "address": "nepal",
-  "dateOfBirth": "2001-05-14"
+  "email": "alice.johnson@email.com",
+  "address": "123 Maple Street, New York, NY 10001",
+  "dateOfBirth": "1990-05-14"
 
 }
