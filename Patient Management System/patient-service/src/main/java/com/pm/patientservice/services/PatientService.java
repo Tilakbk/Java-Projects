@@ -9,6 +9,7 @@ import com.pm.patientservice.model.Patient;
 import com.pm.patientservice.repository.PatientRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,8 +44,12 @@ public class PatientService {
     public PatientResponseDTO updatePatient(UUID id,PatientRequestDTO patientRequestDTO)
     {
         Patient patient= patientRepository.findById(id).orElseThrow(()->new PatientNotFoundException("This patient with this id does not exists "+id));
+        patient.setName(patientRequestDTO.getName());
+        patient.setEmail(patientRequestDTO.getEmail());
+        patient.setAddress(patientRequestDTO.getAddress());
+        patient.setDateOfBirth(LocalDate.parse(patientRequestDTO.getDateOfBirth()));
 
-        return PatientMapper.toDTO(patientRepository.save(PatientMapper.toPatient(patientRequestDTO)));
+        return PatientMapper.toDTO(patientRepository.save(patient));
     }
 
 }
