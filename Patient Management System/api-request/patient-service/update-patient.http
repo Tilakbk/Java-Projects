@@ -1,0 +1,11 @@
+#Update an existing patient
+PUT localhost:4000/patients/fa6ee143-5faa-40b2-9336-62180c5e4969
+Content-Type: application/json
+
+{
+  "name": "Tilak",
+  "email": "Tilak.bk@email.com",
+  "address": "chitwan",
+  "dateOfBirth": "2001-04-01",
+  "registeredDate": "2016-04-01"
+}
