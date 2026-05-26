@@ -1,11 +1,12 @@
+-- Patient data for PostgreSQL
 INSERT INTO patient (id, name, email, address, date_of_birth, registered_date) VALUES
-                                                                                   (RANDOM_UUID(), 'Alice Johnson', 'alice.johnson@email.com', '123 Maple Street, New York, NY 10001', '1990-05-14', '2024-01-10'),
-                                                                                   (RANDOM_UUID(), 'Bob Smith', 'bob.smith@email.com', '456 Oak Avenue, Los Angeles, CA 90001', '1985-08-22', '2024-02-15'),
-                                                                                   (RANDOM_UUID(), 'Carol White', 'carol.white@email.com', '789 Pine Road, Chicago, IL 60601', '1978-03-30', '2024-03-01'),
-                                                                                   (RANDOM_UUID(), 'David Brown', 'david.brown@email.com', '321 Elm Street, Houston, TX 77001', '1995-11-05', '2024-03-20'),
-                                                                                   (RANDOM_UUID(), 'Eva Martinez', 'eva.martinez@email.com', '654 Cedar Lane, Phoenix, AZ 85001', '2000-07-19', '2024-04-05'),
-                                                                                   (RANDOM_UUID(), 'Frank Lee', 'frank.lee@email.com', '987 Birch Blvd, Philadelphia, PA 19101', '1972-12-01', '2024-04-18'),
-                                                                                   (RANDOM_UUID(), 'Grace Kim', 'grace.kim@email.com', '111 Walnut Way, San Antonio, TX 78201', '1988-09-25', '2024-05-02'),
-                                                                                   (RANDOM_UUID(), 'Henry Davis', 'henry.davis@email.com', '222 Spruce Court, San Diego, CA 92101', '1965-02-14', '2024-05-17'),
-                                                                                   (RANDOM_UUID(), 'Isla Thompson', 'isla.thompson@email.com', '333 Willow Drive, Dallas, TX 75201', '1993-06-08', '2024-06-01'),
-                                                                                   (RANDOM_UUID(), 'James Wilson', 'james.wilson@email.com', '444 Ash Circle, San Jose, CA 95101', '1980-04-27', '2024-06-22');
+                                                                                   (gen_random_uuid(), 'Alice Johnson', 'alice.johnson@email.com', '123 Maple Street, New York, NY 10001', '1990-05-14', '2024-01-10'),
+                                                                                   (gen_random_uuid(), 'Bob Smith', 'bob.smith@email.com', '456 Oak Avenue, Los Angeles, CA 90001', '1985-08-22', '2024-02-15'),
+                                                                                   (gen_random_uuid(), 'Carol White', 'carol.white@email.com', '789 Pine Road, Chicago, IL 60601', '1978-03-30', '2024-03-01'),
+                                                                                   (gen_random_uuid(), 'David Brown', 'david.brown@email.com', '321 Elm Street, Houston, TX 77001', '1995-11-05', '2024-03-20'),
+                                                                                   (gen_random_uuid(), 'Eva Martinez', 'eva.martinez@email.com', '654 Cedar Lane, Phoenix, AZ 85001', '2000-07-19', '2024-04-05'),
+                                                                                   (gen_random_uuid(), 'Frank Lee', 'frank.lee@email.com', '987 Birch Blvd, Philadelphia, PA 19101', '1972-12-01', '2024-04-18'),
+                                                                                   (gen_random_uuid(), 'Grace Kim', 'grace.kim@email.com', '111 Walnut Way, San Antonio, TX 78201', '1988-09-25', '2024-05-02'),
+                                                                                   (gen_random_uuid(), 'Henry Davis', 'henry.davis@email.com', '222 Spruce Court, San Diego, CA 92101', '1965-02-14', '2024-05-17'),
+                                                                                   (gen_random_uuid(), 'Isla Thompson', 'isla.thompson@email.com', '333 Willow Drive, Dallas, TX 75201', '1993-06-08', '2024-06-01'),
+                                                                                   (gen_random_uuid(), 'James Wilson', 'james.wilson@email.com', '444 Ash Circle, San Jose, CA 95101', '1980-04-27', '2024-06-22');
