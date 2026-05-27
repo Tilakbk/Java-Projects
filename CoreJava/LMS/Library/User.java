@@ -1,5 +1,3 @@
-package CoreJava.LMS.Library;
-
 public abstract class User
 {
     protected String name;

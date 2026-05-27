@@ -1,7 +1,3 @@
-package CoreJava.LMS.Library;
-
-
-
 public class Books {
     private String name;
     private String author;

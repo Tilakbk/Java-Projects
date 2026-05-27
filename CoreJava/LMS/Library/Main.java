@@ -1,4 +1,3 @@
-package CoreJava.LMS.Library;
 import java.util.Scanner;
 
 public class Main
