@@ -1,30 +1,35 @@
 package com.hcms.hostelcomplaintmanagementsystem.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
+
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Hostel {
+public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID hostel_id;
+    private UUID staff_id;
 
     @NotNull
     private String name;
 
     @NotNull
-    private String address;
+    private String role;
 
-    @OneToOne
-    @JoinColumn(name ="warden_id", nullable = false)
-    private Staff staff;
+    @NotNull
+    @Email
+    private String email;
+
+    @NotNull
+    private String phone;
+
+
 }
