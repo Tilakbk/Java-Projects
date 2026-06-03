@@ -9,10 +9,7 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.RoomRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StudentRepo;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 @Service
 public class StudentService {
 
@@ -38,6 +35,11 @@ public class StudentService {
     }
 
     public StudentResponseDto addStudent(StudentRequestDto studentRequestDto) {
+
+        if (studentRepo.existsByEmail(studentRequestDto.getEmail()))
+        {
+            throw new EmailAlreadyExistsException(studentRequestDto.getEmail() +"This email already exists");
+        }
 
         Student student= Mapper.toStudent(studentRequestDto);
         student.setRoom(roomRepo.findById(studentRequestDto.getRoom_id()).orElse(null));
