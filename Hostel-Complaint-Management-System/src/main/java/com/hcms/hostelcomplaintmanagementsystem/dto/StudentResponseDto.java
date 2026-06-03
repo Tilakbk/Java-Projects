@@ -9,5 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class StudentResponseDto {
 
-    private
+    private String name;
+    private String email;
+    private String phone;
+    private int room_number;
+    private String hostel_name;
 }
