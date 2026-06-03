@@ -1,15 +1,22 @@
 package com.hcms.hostelcomplaintmanagementsystem.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
-@Getter
-@Setter
+import java.util.UUID;
+
+
 @Entity
-@Table
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Category {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID category_id;
 
+    @NotNull
+    private String category_name;
 }
