@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.service;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StudentRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Student;
@@ -30,4 +31,9 @@ public class StudentService {
 
     }
 
+    public StudentResponseDto addStudent(StudentRequestDto studentRequestDto) {
+
+
+
+    }
 }
