@@ -49,7 +49,7 @@ public class StudentService {
         }
 
         Student student= Mapper.toStudent(studentRequestDto);
-        student.setRoom(roomRepo.findById(studentRequestDto.getRoom_id()).orElse(null));
+        student.setRoom(roomRepo.findById(studentRequestDto.getRoom_id()).orElseThrow(exception->new RoomNotValidException(studentRequestDto.getRoom_id()+" Room with this id doesnot exists") ));
         student.setHostel(hostelRepo.findById(studentRequestDto.getHostel_id()).orElse(null));
 
         return Mapper.toStudentResponseDto(studentRepo.save(student));
