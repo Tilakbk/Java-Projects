@@ -43,9 +43,9 @@ public class StudentService {
             throw new EmailAlreadyExistsException(studentRequestDto.getEmail() +"This email already exists");
         }
 
-        if (studentRepo.existsByPhone(studentRequestDto.getPhone()))
+        if (studentRepo.existsByPhone(studentRequestDto.getPhone())&& studentRequestDto.getPhone()!=null)
         {
-            throw new PhoneAlreadyExistsException(studentRequestDto.getEmail() +"This email already exists");
+            throw new PhoneAlreadyExistsException(studentRequestDto.getPhone() +"This phone already exists");
         }
 
         Student student= Mapper.toStudent(studentRequestDto);
