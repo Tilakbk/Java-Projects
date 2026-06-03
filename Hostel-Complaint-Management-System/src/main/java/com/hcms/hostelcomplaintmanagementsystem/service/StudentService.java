@@ -2,6 +2,8 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.EmailAlreadyExistsException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.PhoneAlreadyExistsException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Student;
 import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
@@ -39,6 +41,11 @@ public class StudentService {
         if (studentRepo.existsByEmail(studentRequestDto.getEmail()))
         {
             throw new EmailAlreadyExistsException(studentRequestDto.getEmail() +"This email already exists");
+        }
+
+        if (studentRepo.existsByPhone(studentRequestDto.getPhone()))
+        {
+            throw new PhoneAlreadyExistsException(studentRequestDto.getEmail() +"This email already exists");
         }
 
         Student student= Mapper.toStudent(studentRequestDto);
