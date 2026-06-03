@@ -35,4 +35,14 @@ public class GlobalExceptionHandler {
         log.warn("Email already exists: {}",e.getMessage());
         return ResponseEntity.badRequest().body(e.getMessage());
     }
+
+    @ExceptionHandler(PhoneAlreadyExistsException.class)
+    public ResponseEntity<Map<String,String>> phoneAlreadyExistsException(PhoneAlreadyExistsException e)
+    {
+        log.warn("Phone already exists: {}",e.getMessage());
+        Map<String,String> error=new HashMap<>();
+        error.put("Error: ",e.getMessage());
+
+        return ResponseEntity.badRequest().body(error);
+    }
 }
