@@ -13,7 +13,7 @@ import java.util.Map;
 @Service
 public class StudentService {
 
-    private StudentRepo studentRepo;
+    private final StudentRepo studentRepo;
 
     public StudentService(StudentRepo studentRepo)
     {
