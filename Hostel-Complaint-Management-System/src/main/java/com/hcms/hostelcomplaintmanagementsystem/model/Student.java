@@ -24,6 +24,7 @@ public class Student {
 
     @NotNull
     @Email
+    @Column(unique = true)
     private String email;
 
     private String phone;
