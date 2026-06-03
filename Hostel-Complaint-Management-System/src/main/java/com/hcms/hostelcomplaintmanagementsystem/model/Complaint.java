@@ -11,6 +11,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -45,5 +46,7 @@ public class Complaint {
     @LastModifiedDate
     private LocalDateTime updated_at;
 
+    @OneToMany(mappedBy = "complaint",cascade = CascadeType.ALL)
+    private List<ResolutionLog> resolutionLogs;
 
 }
