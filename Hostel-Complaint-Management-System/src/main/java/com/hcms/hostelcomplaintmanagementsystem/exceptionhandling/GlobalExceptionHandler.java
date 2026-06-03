@@ -45,4 +45,24 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(error);
     }
+
+    @ExceptionHandler(RoomNotValidException.class)
+    public ResponseEntity<Map<String,String>> roomNotValidException(RoomNotValidException e)
+    {
+        log.error("Room not valid: {}",e.getMessage());
+        Map<String,String> error=new HashMap<>();
+        error.put("Error: ",e.getMessage());
+
+        return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(HostelNotValidException.class)
+    public ResponseEntity<Map<String,String>> hostelNotValidException(RoomNotValidException e)
+    {
+        log.error("Hostel not valid: {}",e.getMessage());
+        Map<String,String> error=new HashMap<>();
+        error.put("Error: ",e.getMessage());
+
+        return ResponseEntity.badRequest().body(error);
+    }
 }

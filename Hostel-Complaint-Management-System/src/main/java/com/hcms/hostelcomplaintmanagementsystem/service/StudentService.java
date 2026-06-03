@@ -3,7 +3,9 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.EmailAlreadyExistsException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.HostelNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.PhoneAlreadyExistsException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.RoomNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Student;
 import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
@@ -49,8 +51,8 @@ public class StudentService {
         }
 
         Student student= Mapper.toStudent(studentRequestDto);
-        student.setRoom(roomRepo.findById(studentRequestDto.getRoom_id()).orElseThrow(exception->new RoomNotValidException(studentRequestDto.getRoom_id()+" Room with this id doesnot exists") ));
-        student.setHostel(hostelRepo.findById(studentRequestDto.getHostel_id()).orElse(null));
+        student.setRoom(roomRepo.findById(studentRequestDto.getRoom_id()).orElseThrow(()->new RoomNotValidException(studentRequestDto.getRoom_id()+" Room with this id does not exists") ));
+        student.setHostel(hostelRepo.findById(studentRequestDto.getHostel_id()).orElseThrow(()->new HostelNotValidException(studentRequestDto.getHostel_id()+" Hostel with this Id does not exist")));
 
         return Mapper.toStudentResponseDto(studentRepo.save(student));
 
