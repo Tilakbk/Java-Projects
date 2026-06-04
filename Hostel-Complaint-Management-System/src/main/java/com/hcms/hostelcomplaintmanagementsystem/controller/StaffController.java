@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StaffResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.service.StaffService;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,7 @@ public class StaffController {
     }
 
     @GetMapping("/staffs")
-    public ResponseEntity<List<Staff>> getAllStaff()
+    public ResponseEntity<List<StaffResponseDto>> getAllStaff()
     {
         return ResponseEntity.ok().body(staffService.getAllStaff());
     }
