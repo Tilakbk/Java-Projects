@@ -72,4 +72,13 @@ public class GlobalExceptionHandler {
         ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Hostel Not valid",e.getMessage(),request.getRequestURI());
         return ResponseEntity.badRequest().body(error);
     }
+
+    @ExceptionHandler(StudentNotValidException.class)
+    public ResponseEntity<ApiErrorDto> studentNotValidException(StudentNotValidException e,HttpServletRequest request)
+    {
+        log.error("Student not valid: {}",e.getMessage());
+
+        ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Student Not valid",e.getMessage(),request.getRequestURI());
+        return ResponseEntity.badRequest().body(error);
+    }
 }

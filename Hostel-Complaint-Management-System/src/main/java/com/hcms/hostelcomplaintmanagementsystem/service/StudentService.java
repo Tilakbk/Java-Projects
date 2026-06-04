@@ -2,10 +2,7 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
-import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.EmailAlreadyExistsException;
-import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.HostelNotValidException;
-import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.PhoneAlreadyExistsException;
-import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.RoomNotValidException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.*;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Student;
 import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
@@ -63,6 +60,7 @@ public class StudentService {
     public StudentResponseDto getStudentById(UUID id)
     {
         Student student= studentRepo.findById(id).orElseThrow(()->new StudentNotValidException(id+"Student With this Id does not exists"));
+        return Mapper.toStudentResponseDto(student);
 
     }
 }
