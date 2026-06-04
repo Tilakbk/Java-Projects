@@ -1,7 +1,9 @@
 package com.hcms.hostelcomplaintmanagementsystem.mapper;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StaffResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
+import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.model.Student;
 
 
@@ -30,6 +32,20 @@ public class Mapper {
         student.setEmail(studentRequestDto.getEmail());
         student.setPhone(studentRequestDto.getPhone());
         return student;
+    }
+
+    public static StaffResponseDto toStaffResponseDto(Staff staf)
+    {
+        StaffResponseDto staff = new StaffResponseDto();
+
+        staff.setName(staf.getName());
+        staff.setEmail(staf.getEmail());
+        staff.setRole(staf.getRole());
+        staff.setPhone(staf.getPhone());
+
+        return staff;
+
+
     }
 
 }
