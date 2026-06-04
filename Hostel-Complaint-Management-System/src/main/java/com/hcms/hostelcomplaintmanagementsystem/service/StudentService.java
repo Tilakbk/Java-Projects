@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.service;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StudentPatchDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.*;
@@ -76,12 +77,36 @@ public class StudentService {
         return Mapper.toStudentResponseDto(studentRepo.save(student));
     }
 
-    public StudentResponseDto partiallyUpdateStudentById(UUID id, StudentRequestDto studentRequestDto) {
+    public StudentResponseDto partiallyUpdateStudentById(UUID id, StudentPatchDto studentPatchDto) {
         Student student = studentRepo.findById(id).orElseThrow(()->new StudentNotValidException(id+" Student With this Id doesn't exists"));
-        student.setName(studentRequestDto.getName());
-        student.setPhone(studentRequestDto.getPhone());
-        student.setEmail(studentRequestDto.getEmail());
-        return Mapper.toStudentResponseDto(studentRepo.save(student));
 
+        if (studentPatchDto.getName()!=null)
+        {
+            student.setName(studentPatchDto.getName());
+        }
+
+        if (studentPatchDto.getEmail()!=null)
+        {
+            student.setEmail(studentPatchDto.getEmail());
+        }
+
+        if (studentPatchDto.getPhone()!=null)
+        {
+            student.setPhone(studentPatchDto.getPhone());
+        }
+
+        if (studentPatchDto.getRoom_id()!=null)
+        {
+            student.setRoom(roomRepo.findById(studentPatchDto.getRoom_id()).orElseThrow(()->new RoomNotValidException(studentPatchDto.getRoom_id()+" Room with this id does not exists")));
+        }
+
+
+
+        if (studentPatchDto.getHostel_id()!=null)
+        {
+            student.setHostel(hostelRepo.findById(studentPatchDto.getHostel_id()).orElseThrow(()->new HostelNotValidException(studentPatchDto.getHostel_id()+" Hostel with this id does not exists")));
+        }
+
+        return Mapper.toStudentResponseDto(studentRepo.save(student));
     }
 }

@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StudentPatchDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.validator.StudentValidatorGroup;
@@ -50,8 +51,8 @@ public class StudentController {
 
 
     @PatchMapping("/students/{id}")
-    public ResponseEntity<StudentResponseDto> partiallyUpdateStudentById(@Validated({Default.class}) @RequestBody StudentRequestDto studentRequestDto, @PathVariable UUID id)
+    public ResponseEntity<StudentResponseDto> partiallyUpdateStudentById(@Validated({Default.class}) @RequestBody StudentPatchDto studentPatchDto, @PathVariable UUID id)
     {
-        return ResponseEntity.ok().body(studentService.partiallyUpdateStudentById(id,studentRequestDto));
+        return ResponseEntity.ok().body(studentService.partiallyUpdateStudentById(id,studentPatchDto));
     }
 }
