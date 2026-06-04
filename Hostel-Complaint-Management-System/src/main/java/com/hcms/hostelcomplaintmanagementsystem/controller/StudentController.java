@@ -2,9 +2,11 @@ package com.hcms.hostelcomplaintmanagementsystem.controller;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
+import com.hcms.hostelcomplaintmanagementsystem.dto.validator.StudentValidatorGroup;
 import com.hcms.hostelcomplaintmanagementsystem.service.StudentService;
-import jakarta.validation.Valid;
+import jakarta.validation.groups.Default;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public class StudentController {
     }
 
     @PostMapping("/students")
-    public ResponseEntity<StudentResponseDto> addStudent( @Valid @RequestBody StudentRequestDto studentRequestDto)
+    public ResponseEntity<StudentResponseDto> addStudent( @Validated({Default.class, StudentValidatorGroup.class}) @RequestBody StudentRequestDto studentRequestDto)
     {
         return ResponseEntity.ok().body(studentService.addStudent(studentRequestDto));
     }
@@ -40,7 +42,7 @@ public class StudentController {
     }
 
     @PutMapping("/students/{id}")
-    public ResponseEntity<StudentResponseDto> updateStudentById( @Valid @RequestBody StudentRequestDto studentRequestDto,@PathVariable UUID id)
+    public ResponseEntity<StudentResponseDto> updateStudentById(@Validated({Default.class}) @RequestBody StudentRequestDto studentRequestDto, @PathVariable UUID id)
     {
         return ResponseEntity.ok().body(studentService.getStudentById(id));
     }
