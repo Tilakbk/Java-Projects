@@ -110,8 +110,11 @@ public class StudentService {
         return Mapper.toStudentResponseDto(studentRepo.save(student));
     }
 
-    public StudentResponseDto deleteStudentById(UUID id) {
+    public void deleteStudentById(UUID id) {
 
+        Student student = studentRepo.findById(id).orElseThrow(()->new StudentNotValidException(id+" Student with this id does not exist "));
+
+        studentRepo.delete(student);
 
     }
 }
