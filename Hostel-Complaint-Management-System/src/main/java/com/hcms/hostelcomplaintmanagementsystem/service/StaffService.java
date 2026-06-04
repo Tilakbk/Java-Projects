@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.service;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StaffRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StaffResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
@@ -24,6 +25,12 @@ public class StaffService {
        return staffs.stream()
                 .map(Mapper::toStaffResponseDto)
                 .toList();
+
+    }
+
+    public StaffResponseDto addStaff(StaffRequestDto staffRequestDto) {
+
+
 
     }
 }

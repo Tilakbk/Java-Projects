@@ -1,12 +1,11 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StaffRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StaffResponseDto;
-import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.service.StaffService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +23,12 @@ public class StaffController {
     public ResponseEntity<List<StaffResponseDto>> getAllStaff()
     {
         return ResponseEntity.ok().body(staffService.getAllStaff());
+    }
+
+    @PostMapping("/staffs")
+    public ResponseEntity<StaffResponseDto> addStaff(@Validated @RequestBody StaffRequestDto staffRequestDto)
+    {
+        return ResponseEntity.ok().body(staffService.addStaff(staffRequestDto));
     }
 
 }
