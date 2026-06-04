@@ -1,15 +1,17 @@
 package com.hcms.hostelcomplaintmanagementsystem.exceptionhandling;
 
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+
 
 
 @ControllerAdvice
@@ -18,51 +20,56 @@ public class GlobalExceptionHandler {
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<Map<String,String>> methodArgNotValidException(MethodArgumentNotValidException e)
-    {
+    public ResponseEntity<List<ApiErrorDto>> handleValidationException(
+            MethodArgumentNotValidException e, HttpServletRequest request) {
 
-        Map<String,String> error= new HashMap<>();
-        e.getBindingResult()
+        List<ApiErrorDto> errors = e.getBindingResult()
                 .getFieldErrors()
-                .forEach(er->error.put(er.getField(),er.getDefaultMessage()));
+                .stream()
+                .map(error -> new ApiErrorDto(
+                        HttpStatus.BAD_REQUEST.value(),
+                        "Validation Failed",
+                        error.getDefaultMessage(),
+                        request.getRequestURI(),
+                        error.getField()
+                ))
+                .toList();
 
-        return ResponseEntity.badRequest().body(error);
+        return ResponseEntity.badRequest().body(errors);
     }
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<String> emailAlreadyExistsException(EmailAlreadyExistsException e)
+    public ResponseEntity<ApiErrorDto> emailAlreadyExistsException(EmailAlreadyExistsException e,HttpServletRequest request)
     {
-        log.warn("Email already exists: {}",e.getMessage());
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }
-
-    @ExceptionHandler(PhoneAlreadyExistsException.class)
-    public ResponseEntity<Map<String,String>> phoneAlreadyExistsException(PhoneAlreadyExistsException e)
-    {
-        log.warn("Phone already exists: {}",e.getMessage());
-        Map<String,String> error=new HashMap<>();
-        error.put("Error: ",e.getMessage());
-
+        ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Email already exists",e.getMessage(),request.getRequestURI());
         return ResponseEntity.badRequest().body(error);
     }
 
+    @ExceptionHandler(PhoneAlreadyExistsException.class)
+    public ResponseEntity<ApiErrorDto> phoneAlreadyExistsException(PhoneAlreadyExistsException e,HttpServletRequest request)
+    {
+        log.warn("Phone already exists: {}",e.getMessage());
+        ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Phone already exists",e.getMessage(),request.getRequestURI());
+        return ResponseEntity.badRequest().body(error);
+
+
+    }
+
     @ExceptionHandler(RoomNotValidException.class)
-    public ResponseEntity<Map<String,String>> roomNotValidException(RoomNotValidException e)
+    public ResponseEntity<ApiErrorDto> roomNotValidException(RoomNotValidException e,HttpServletRequest request)
     {
         log.error("Room not valid: {}",e.getMessage());
-        Map<String,String> error=new HashMap<>();
-        error.put("Error: ",e.getMessage());
 
+        ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Room Not valid",e.getMessage(),request.getRequestURI());
         return ResponseEntity.badRequest().body(error);
     }
 
     @ExceptionHandler(HostelNotValidException.class)
-    public ResponseEntity<Map<String,String>> hostelNotValidException(HostelNotValidException e)
+    public ResponseEntity<ApiErrorDto> hostelNotValidException(HostelNotValidException e,HttpServletRequest request)
     {
         log.error("Hostel not valid: {}",e.getMessage());
-        Map<String,String> error=new HashMap<>();
-        error.put("Error: ",e.getMessage());
 
+        ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Hostel Not valid",e.getMessage(),request.getRequestURI());
         return ResponseEntity.badRequest().body(error);
     }
 }
