@@ -1,6 +1,7 @@
 package com.hcms.hostelcomplaintmanagementsystem.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,10 +22,10 @@ public class StudentRequestDto {
     @NotBlank(message = "Phone is required")
     private String phone;
 
-    @NotBlank(message = "Room id is required")
+    @NotNull(message = "Room id is required")
     private UUID room_id;
 
-    @NotBlank(message = "Hostel id is required")
+    @NotNull(message = "Hostel id is required")
     private UUID hostel_id;
 
 }

@@ -21,13 +21,13 @@ public class StudentController {
     }
 
     @GetMapping("/students")
-    private ResponseEntity<List<StudentResponseDto>> getAllStudent()
+    public ResponseEntity<List<StudentResponseDto>> getAllStudent()
     {
         return ResponseEntity.ok().body(studentService.getAllStudent());
     }
 
     @PostMapping("/students")
-    private ResponseEntity<StudentResponseDto> addStudent( @Valid @RequestBody StudentRequestDto studentRequestDto)
+    public ResponseEntity<StudentResponseDto> addStudent( @Valid @RequestBody StudentRequestDto studentRequestDto)
     {
         return ResponseEntity.ok().body(studentService.addStudent(studentRequestDto));
     }

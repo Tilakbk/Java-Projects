@@ -57,7 +57,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HostelNotValidException.class)
-    public ResponseEntity<Map<String,String>> hostelNotValidException(RoomNotValidException e)
+    public ResponseEntity<Map<String,String>> hostelNotValidException(HostelNotValidException e)
     {
         log.error("Hostel not valid: {}",e.getMessage());
         Map<String,String> error=new HashMap<>();

@@ -45,7 +45,7 @@ public class StudentService {
             throw new EmailAlreadyExistsException(studentRequestDto.getEmail() +"This email already exists");
         }
 
-        if (studentRepo.existsByPhone(studentRequestDto.getPhone())&& studentRequestDto.getPhone()!=null)
+        if (studentRequestDto.getPhone()!=null && studentRepo.existsByPhone(studentRequestDto.getPhone()) )
         {
             throw new PhoneAlreadyExistsException(studentRequestDto.getPhone() +"This phone already exists");
         }
