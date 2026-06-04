@@ -55,4 +55,12 @@ public class StudentController {
     {
         return ResponseEntity.ok().body(studentService.partiallyUpdateStudentById(id,studentPatchDto));
     }
+
+    @DeleteMapping("/students/{id}")
+    public ResponseEntity<StudentResponseDto> deleteStudentById(@PathVariable UUID id)
+    {
+        return ResponseEntity.ok().body(studentService.deleteStudentById(id));
+    }
+
+
 }

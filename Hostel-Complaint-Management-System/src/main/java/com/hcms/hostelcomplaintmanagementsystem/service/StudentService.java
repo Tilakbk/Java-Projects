@@ -109,4 +109,9 @@ public class StudentService {
 
         return Mapper.toStudentResponseDto(studentRepo.save(student));
     }
+
+    public StudentResponseDto deleteStudentById(UUID id) {
+
+
+    }
 }
