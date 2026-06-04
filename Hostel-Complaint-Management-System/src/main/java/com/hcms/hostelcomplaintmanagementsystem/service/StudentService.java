@@ -14,6 +14,8 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.StudentRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
+
 @Service
 public class StudentService {
 
@@ -55,6 +57,12 @@ public class StudentService {
         student.setHostel(hostelRepo.findById(studentRequestDto.getHostel_id()).orElseThrow(()->new HostelNotValidException(studentRequestDto.getHostel_id()+" Hostel with this Id does not exist")));
 
         return Mapper.toStudentResponseDto(studentRepo.save(student));
+
+    }
+
+    public StudentResponseDto getStudentById(UUID id)
+    {
+        Student student= studentRepo.findById(id).orElseThrow(()->new StudentNotValidException(id+"Student With this Id does not exists"));
 
     }
 }
