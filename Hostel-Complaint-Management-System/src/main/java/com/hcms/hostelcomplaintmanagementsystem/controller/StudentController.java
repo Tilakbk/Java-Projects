@@ -41,9 +41,17 @@ public class StudentController {
         return ResponseEntity.ok().body(studentService.getStudentById(id));
     }
 
+
     @PutMapping("/students/{id}")
-    public ResponseEntity<StudentResponseDto> updateStudentById(@Validated({Default.class}) @RequestBody StudentRequestDto studentRequestDto, @PathVariable UUID id)
+    public ResponseEntity<StudentResponseDto> updateStudentById(@Validated({Default.class,StudentValidatorGroup.class}) @RequestBody StudentRequestDto studentRequestDto, @PathVariable UUID id)
     {
-        return ResponseEntity.ok().body(studentService.getStudentById(id));
+        return ResponseEntity.ok().body(studentService.updateStudentById(id,studentRequestDto));
+    }
+
+
+    @PatchMapping("/students/{id}")
+    public ResponseEntity<StudentResponseDto> partiallyUpdateStudentById(@Validated({Default.class}) @RequestBody StudentRequestDto studentRequestDto, @PathVariable UUID id)
+    {
+        return ResponseEntity.ok().body(studentService.partiallyUpdateStudentById(id,studentRequestDto));
     }
 }

@@ -63,4 +63,25 @@ public class StudentService {
         return Mapper.toStudentResponseDto(student);
 
     }
+
+    public StudentResponseDto updateStudentById(UUID id, StudentRequestDto studentRequestDto) {
+
+        Student student = studentRepo.findById(id).orElseThrow(()->new StudentNotValidException(id+" Student With this Id does not exists"));
+        student.setName(studentRequestDto.getName());
+        student.setPhone(studentRequestDto.getPhone());
+        student.setEmail(studentRequestDto.getEmail());
+        student.setRoom(roomRepo.findById(studentRequestDto.getRoom_id()).orElseThrow(()->new RoomNotValidException(studentRequestDto.getRoom_id()+" Room with this id does not exists")));
+        student.setHostel(hostelRepo.findById(studentRequestDto.getHostel_id()).orElseThrow(()->new HostelNotValidException(studentRequestDto.getHostel_id()+" Hostel with this Id does not exist")));
+
+        return Mapper.toStudentResponseDto(studentRepo.save(student));
+    }
+
+    public StudentResponseDto partiallyUpdateStudentById(UUID id, StudentRequestDto studentRequestDto) {
+        Student student = studentRepo.findById(id).orElseThrow(()->new StudentNotValidException(id+" Student With this Id doesn't exists"));
+        student.setName(studentRequestDto.getName());
+        student.setPhone(studentRequestDto.getPhone());
+        student.setEmail(studentRequestDto.getEmail());
+        return Mapper.toStudentResponseDto(studentRepo.save(student));
+
+    }
 }
