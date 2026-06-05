@@ -135,4 +135,10 @@ public class StaffService {
 
 
     }
+
+    public void deleteStaff(UUID id) {
+
+        staffRepo.delete(staffRepo.findById(id).orElseThrow(()->new StaffNotValidException(id+" This staff does not exist")));
+
+    }
 }

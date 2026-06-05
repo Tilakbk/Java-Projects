@@ -57,6 +57,13 @@ public class StaffController {
         return ResponseEntity.ok(staffService.partiallyUpdateStaffById(id,staffPatchRequestDto));
     }
 
+    @DeleteMapping("/staff/{id}")
+    public ResponseEntity<?> deleteStaff(@PathVariable UUID id)
+    {
+        staffService.deleteStaff(id);
+        return ResponseEntity.noContent().build();
+    }
+
 
 
 }
