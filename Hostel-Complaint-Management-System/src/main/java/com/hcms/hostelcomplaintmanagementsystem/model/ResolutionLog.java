@@ -21,7 +21,7 @@ public class ResolutionLog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID log_id;
+    private UUID logId;
 
     @ManyToOne
     @JoinColumn(name = "complaint_id",nullable = false)

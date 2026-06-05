@@ -16,7 +16,7 @@ public class Room {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID room_id;
+    private UUID roomId;
 
     @NotNull
     private int room_number;

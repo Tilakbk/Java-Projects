@@ -15,7 +15,7 @@ public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID category_id;
+    private UUID categoryId;
 
     @NotNull
     private String category_name;

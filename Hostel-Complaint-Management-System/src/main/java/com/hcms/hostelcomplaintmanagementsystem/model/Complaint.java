@@ -23,7 +23,7 @@ public class Complaint {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID complaint_id;
+    private UUID complaintId;
 
 
     @ManyToOne

@@ -10,6 +10,7 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StaffService {
@@ -46,6 +47,12 @@ public class StaffService {
 
             return Mapper.toStaffResponseDto(staff);
 
+
+    }
+
+    public StaffResponseDto getStaffById(UUID id) {
+
+        Staff staff= staffRepo.findById(id).orElseThrow(new StaffNotValidException(id+" This staff does not exist"));
 
     }
 }

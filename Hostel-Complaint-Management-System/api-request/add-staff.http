@@ -1,0 +1,12 @@
+### Post request for staff
+POST http://localhost:8080/api/staffs
+Content-Type: application/json
+
+{
+  "name": "Tilak",
+  "email": "tilak@gmail.com",
+  "phone": "9862663813",
+  "role": "warden"
+}
+
+###

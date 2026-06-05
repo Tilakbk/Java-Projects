@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -30,5 +31,13 @@ public class StaffController {
     {
         return ResponseEntity.ok().body(staffService.addStaff(staffRequestDto));
     }
+
+    @GetMapping("/staff/{id}")
+    public ResponseEntity<StaffResponseDto> getStaffById(@PathVariable UUID id)
+    {
+        return ResponseEntity.ok(staffService.getStaffById(id));
+    }
+
+
 
 }

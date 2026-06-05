@@ -16,7 +16,7 @@ public class Staff {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID staff_id;
+    private UUID staffId;
 
     @NotNull
     private String name;

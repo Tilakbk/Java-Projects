@@ -9,7 +9,7 @@
     import java.util.UUID;
 
     @Repository
-    public interface StaffRepo extends JpaRepository<Staff, UUID> {
+    public interface StaffRepo extends JpaRepository<Staff,UUID> {
         boolean existsByEmail(String email);
 
         boolean existsByPhone(String phone);

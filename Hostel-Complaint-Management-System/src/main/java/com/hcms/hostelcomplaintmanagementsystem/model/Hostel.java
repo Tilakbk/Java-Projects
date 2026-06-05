@@ -16,7 +16,7 @@ public class Hostel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID hostel_id;
+    private UUID hostelId;
 
     @NotNull
     private String name;

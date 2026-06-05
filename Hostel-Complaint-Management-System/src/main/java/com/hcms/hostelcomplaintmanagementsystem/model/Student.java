@@ -17,7 +17,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID student_id;
+    private UUID studentId;
 
     @NotNull
     private String name;
