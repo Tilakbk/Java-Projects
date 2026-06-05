@@ -3,9 +3,8 @@ package com.hcms.hostelcomplaintmanagementsystem.controller;
 import com.hcms.hostelcomplaintmanagementsystem.dto.HostelResponseDTO;
 import com.hcms.hostelcomplaintmanagementsystem.service.HostelService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,5 +23,9 @@ public class HostelController {
     {
         return ResponseEntity.ok(hostelService.getAllHostel());
     }
+
+    @PostMapping("/hostel")
+    public ResponseEntity<HostelResponseDTO> addHostel(@Validated @ResponseBody HostelRequestDto hostelRequestDto)
+
 
 }
