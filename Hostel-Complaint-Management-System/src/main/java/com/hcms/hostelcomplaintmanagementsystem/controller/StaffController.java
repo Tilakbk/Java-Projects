@@ -50,6 +50,8 @@ public class StaffController {
         return ResponseEntity.ok(staffService.updateStaffById(id,staffRequestDto));
     }
 
+    @PatchMapping("/staff/{id}")
+    public ResponseEntity<StaffResponseDto> partiallyUpdateStaffById(@PathVariable UUID id, @Validated @RequestBody StaffPatchRequestDto staffPatchRequestDto)
 
 
 
