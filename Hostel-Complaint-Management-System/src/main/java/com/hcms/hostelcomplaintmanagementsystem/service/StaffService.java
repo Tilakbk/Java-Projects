@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.service;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StaffPatchRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StaffRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StaffResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.EmailAlreadyExistsException;
@@ -71,8 +72,12 @@ public class StaffService {
 
     public StaffResponseDto updateStaffById(UUID id, StaffRequestDto staffRequestDto) {
 
-        Staff staff=staffRepo.findById(id).orElseThrow(()->new StudentNotValidException(id+" This staff does not exist"));
+        Staff staff=staffRepo.findById(id).orElseThrow(()->new StaffNotValidException(id+" This staff does not exist"));
 
+        if (staffRepo.existsByEmailAndStaffIdNot(staffRequestDto.getEmail(),id))
+        {
+            throw new EmailAlreadyExistsException(staffRequestDto.getEmail()+" This email already exist");
+        }
         staff.setName(staffRequestDto.getName());
         staff.setRole(staffRequestDto.getRole());
         staff.setEmail(staffRequestDto.getEmail());
@@ -82,4 +87,52 @@ public class StaffService {
     }
 
 
+    public StaffResponseDto partiallyUpdateStaffById(UUID id, StaffPatchRequestDto staffPatchRequestDto) {
+
+        Staff staff=staffRepo.findById(id).orElseThrow(()->new StaffNotValidException(id+" This staff does not exist"));
+
+
+        if (staffPatchRequestDto.getRole()!=null)
+        {
+            staff.setRole(staffPatchRequestDto.getRole());
+
+        }
+
+        if (staffPatchRequestDto.getEmail()!=null && staffRepo.existsByEmailAndStaffIdNot(staffPatchRequestDto.getEmail(),id))
+        {
+            throw new EmailAlreadyExistsException(staffPatchRequestDto.getEmail()+" This email already exist");
+        }
+
+
+        if (staffPatchRequestDto.getEmail()!=null)
+        {
+            staff.setEmail(staffPatchRequestDto.getEmail());
+
+        }
+
+        if (staffPatchRequestDto.getPhone()!=null && staffRepo.existsByPhoneAndStaffIdNot(staffPatchRequestDto.getPhone(),id))
+        {
+            throw new PhoneAlreadyExistsException(staffPatchRequestDto.getPhone()+" This phone already exist");
+        }
+
+
+        if (staffPatchRequestDto.getPhone()!=null)
+        {
+            staff.setPhone(staffPatchRequestDto.getPhone());
+
+        }
+
+        if (staffPatchRequestDto.getName()!=null)
+        {
+            staff.setName(staffPatchRequestDto.getName());
+
+        }
+
+        return Mapper.toStaffResponseDto(staffRepo.save(staff));
+
+
+
+
+
+    }
 }

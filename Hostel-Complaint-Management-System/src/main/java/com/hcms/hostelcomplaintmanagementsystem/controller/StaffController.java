@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.StaffPatchRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StaffRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StaffResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.service.StaffService;
@@ -52,6 +53,9 @@ public class StaffController {
 
     @PatchMapping("/staff/{id}")
     public ResponseEntity<StaffResponseDto> partiallyUpdateStaffById(@PathVariable UUID id, @Validated @RequestBody StaffPatchRequestDto staffPatchRequestDto)
+    {
+        return ResponseEntity.ok(staffService.partiallyUpdateStaffById(id,staffPatchRequestDto));
+    }
 
 
 
