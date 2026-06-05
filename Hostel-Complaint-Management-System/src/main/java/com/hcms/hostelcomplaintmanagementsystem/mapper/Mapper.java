@@ -68,4 +68,12 @@ public class Mapper {
         return hostelResponseDTO;
     }
 
+    public static Hostel toHostel(HostelRequestDto hostelRequestDto)
+    {
+        Hostel hostel= new Hostel();
+        hostel.setName(hostelRequestDto.getName());
+        hostel.setAddress(hostelRequestDto.getAddress());
+         return  hostel;
+    }
+
 }

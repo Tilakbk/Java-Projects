@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.HostelRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.HostelResponseDTO;
 import com.hcms.hostelcomplaintmanagementsystem.service.HostelService;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,10 @@ public class HostelController {
     }
 
     @PostMapping("/hostel")
-    public ResponseEntity<HostelResponseDTO> addHostel(@Validated @ResponseBody HostelRequestDto hostelRequestDto)
+    public ResponseEntity<HostelResponseDTO> addHostel(@Validated @RequestBody HostelRequestDto hostelRequestDto)
+    {
+        return ResponseEntity.ok(hostelService.addHostel(hostelRequestDto));
+    }
 
 
 }
