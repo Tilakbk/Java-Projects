@@ -8,6 +8,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -29,6 +30,12 @@ public class HostelController {
     public ResponseEntity<HostelResponseDTO> addHostel(@Validated @RequestBody HostelRequestDto hostelRequestDto)
     {
         return ResponseEntity.ok(hostelService.addHostel(hostelRequestDto));
+    }
+
+    @GetMapping("/hostel/{id}")
+    public ResponseEntity<HostelResponseDTO> getHostelById(@PathVariable UUID id)
+    {
+        return ResponseEntity.ok(hostelService.getHostelById(id));
     }
 
 

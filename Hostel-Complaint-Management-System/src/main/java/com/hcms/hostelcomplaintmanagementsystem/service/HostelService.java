@@ -2,6 +2,7 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.HostelRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.HostelResponseDTO;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.HostelNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StaffNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Hostel;
@@ -10,6 +11,7 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class HostelService {
@@ -39,6 +41,14 @@ public class HostelService {
         hostel.setStaff(staffRepo.findById(hostelRequestDto.getWardenId()).orElseThrow(()->new StaffNotValidException(hostelRequestDto.getWardenId()+" Warden with this id does not exist")));
 
         return Mapper.toHostelResponseDto(hostelRepo.save(hostel));
+
+    }
+
+    public HostelResponseDTO getHostelById(UUID id) {
+
+        Hostel hostel= hostelRepo.findById(id).orElseThrow(()-> new HostelNotValidException(id+" This hostel does not exist"));
+
+        return Mapper.toHostelResponseDto(hostel);
 
     }
 }
