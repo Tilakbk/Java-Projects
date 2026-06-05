@@ -1,0 +1,10 @@
+### Update staff
+PUT http://localhost:8080/api/staff/123e4567-e89b-12d3-a456-426614174001
+Content-Type:application/json
+
+{
+  "role": "plumber",
+  "phone": "9812345678",
+  "email": "ram.sharma@example.com",
+  "name": "Rameshh"
+}

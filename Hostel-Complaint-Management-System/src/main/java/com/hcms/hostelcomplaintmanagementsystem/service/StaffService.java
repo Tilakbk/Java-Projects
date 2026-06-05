@@ -5,6 +5,7 @@ import com.hcms.hostelcomplaintmanagementsystem.dto.StaffResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.EmailAlreadyExistsException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.PhoneAlreadyExistsException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StaffNotValidException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StudentNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
@@ -67,4 +68,18 @@ public class StaffService {
                 .map(Mapper::toStaffResponseDto)
                 .toList();
     }
+
+    public StaffResponseDto updateStaffById(UUID id, StaffRequestDto staffRequestDto) {
+
+        Staff staff=staffRepo.findById(id).orElseThrow(()->new StudentNotValidException(id+" This staff does not exist"));
+
+        staff.setName(staffRequestDto.getName());
+        staff.setRole(staffRequestDto.getRole());
+        staff.setEmail(staffRequestDto.getEmail());
+        staff.setPhone(staffRequestDto.getPhone());
+
+        return Mapper.toStaffResponseDto(staffRepo.save(staff));
+    }
+
+
 }

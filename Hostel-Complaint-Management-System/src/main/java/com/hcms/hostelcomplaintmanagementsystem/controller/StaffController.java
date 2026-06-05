@@ -44,6 +44,13 @@ public class StaffController {
         return ResponseEntity.ok(staffService.getStaffByRole(role));
     }
 
+    @PutMapping("/staff/{id}")
+    public ResponseEntity<StaffResponseDto> updateStaffById(@PathVariable UUID id, @Validated @RequestBody StaffRequestDto staffRequestDto)
+    {
+        return ResponseEntity.ok(staffService.updateStaffById(id,staffRequestDto));
+    }
+
+
 
 
 }
