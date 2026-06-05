@@ -20,13 +20,13 @@ public class StaffController {
         this.staffService = staffService;
     }
 
-    @GetMapping("/staffs")
+    @GetMapping("/staff")
     public ResponseEntity<List<StaffResponseDto>> getAllStaff()
     {
         return ResponseEntity.ok().body(staffService.getAllStaff());
     }
 
-    @PostMapping("/staffs")
+    @PostMapping("/staff")
     public ResponseEntity<StaffResponseDto> addStaff(@Validated @RequestBody StaffRequestDto staffRequestDto)
     {
         return ResponseEntity.ok().body(staffService.addStaff(staffRequestDto));
@@ -36,6 +36,12 @@ public class StaffController {
     public ResponseEntity<StaffResponseDto> getStaffById(@PathVariable UUID id)
     {
         return ResponseEntity.ok(staffService.getStaffById(id));
+    }
+
+    @GetMapping("/staff/role/{role}")
+    public ResponseEntity<List<StaffResponseDto>> getStaffByRole(@PathVariable String role)
+    {
+        return ResponseEntity.ok(staffService.getStaffByRole(role));
     }
 
 

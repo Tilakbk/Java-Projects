@@ -39,14 +39,14 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<ApiErrorDto> emailAlreadyExistsException(EmailAlreadyExistsException e,HttpServletRequest request)
+    public ResponseEntity<ApiErrorDto> emailAlreadyExistsExceptionHandling(EmailAlreadyExistsException e,HttpServletRequest request)
     {
         ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Email already exists",e.getMessage(),request.getRequestURI());
         return ResponseEntity.badRequest().body(error);
     }
 
     @ExceptionHandler(PhoneAlreadyExistsException.class)
-    public ResponseEntity<ApiErrorDto> phoneAlreadyExistsException(PhoneAlreadyExistsException e,HttpServletRequest request)
+    public ResponseEntity<ApiErrorDto> phoneAlreadyExistsExceptionHandling(PhoneAlreadyExistsException e,HttpServletRequest request)
     {
         log.warn("Phone already exists: {}",e.getMessage());
         ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Phone already exists",e.getMessage(),request.getRequestURI());
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(RoomNotValidException.class)
-    public ResponseEntity<ApiErrorDto> roomNotValidException(RoomNotValidException e,HttpServletRequest request)
+    public ResponseEntity<ApiErrorDto> roomNotValidExceptionHandling(RoomNotValidException e,HttpServletRequest request)
     {
         log.error("Room not valid: {}",e.getMessage());
 
@@ -65,7 +65,7 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(HostelNotValidException.class)
-    public ResponseEntity<ApiErrorDto> hostelNotValidException(HostelNotValidException e,HttpServletRequest request)
+    public ResponseEntity<ApiErrorDto> hostelNotValidExceptionHandling(HostelNotValidException e,HttpServletRequest request)
     {
         log.error("Hostel not valid: {}",e.getMessage());
 
@@ -74,11 +74,21 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(StudentNotValidException.class)
-    public ResponseEntity<ApiErrorDto> studentNotValidException(StudentNotValidException e,HttpServletRequest request)
+    public ResponseEntity<ApiErrorDto> studentNotValidExceptionHandling(StudentNotValidException e,HttpServletRequest request)
     {
         log.error("Student not valid: {}",e.getMessage());
 
         ApiErrorDto error= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Student Not valid",e.getMessage(),request.getRequestURI());
         return ResponseEntity.badRequest().body(error);
+    }
+
+    @ExceptionHandler(StaffNotValidException.class)
+    public ResponseEntity<ApiErrorDto> staffNotValidExceptionHandling(StaffNotValidException e,HttpServletRequest request)
+    {
+        log.warn("Staff not valid: {}",e.getMessage());
+
+        ApiErrorDto errorDto= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Staff not valid",e.getMessage(),request.getRequestURI());
+
+        return ResponseEntity.ok(errorDto);
     }
 }

@@ -1,0 +1,4 @@
+### GET staff by id
+GET http://localhost:8080/api/staff/756474d5-325e-448a-9a1d-95c30d74ba
+
+###

@@ -4,6 +4,7 @@ import com.hcms.hostelcomplaintmanagementsystem.dto.StaffRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.StaffResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.EmailAlreadyExistsException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.PhoneAlreadyExistsException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StaffNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
@@ -52,7 +53,18 @@ public class StaffService {
 
     public StaffResponseDto getStaffById(UUID id) {
 
-        Staff staff= staffRepo.findById(id).orElseThrow(new StaffNotValidException(id+" This staff does not exist"));
+        Staff staff= staffRepo.findById(id).orElseThrow(()->new StaffNotValidException(id+" This staff does not exist"));
 
+        return Mapper.toStaffResponseDto(staff);
+
+    }
+
+    public List<StaffResponseDto> getStaffByRole(String role) {
+
+        List<Staff> staff= staffRepo.findAllByRole(role);
+
+       return staff.stream()
+                .map(Mapper::toStaffResponseDto)
+                .toList();
     }
 }
