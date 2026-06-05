@@ -1,5 +1,5 @@
 ### GET request for staff
-GET http://localhost:8080/api/staffs
+GET http://localhost:8080/api/staff
 
 
 ###
