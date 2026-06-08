@@ -27,9 +27,9 @@ public class RoomController {
 
     }
 
-//    @GetMapping("/room")
-//    public ResponseEntity<List<RoomResponseDto>> getAllRoom()
-//    {
-//
-//    }
+    @GetMapping("/room")
+    public ResponseEntity<List<RoomResponseDto>> getAllRoom()
+    {
+        return ResponseEntity.ok(roomService.getAllRoom());
+    }
 }

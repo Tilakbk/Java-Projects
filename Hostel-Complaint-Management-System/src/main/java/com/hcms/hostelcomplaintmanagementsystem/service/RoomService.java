@@ -10,6 +10,8 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.RoomRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoomService {
 
@@ -32,6 +34,17 @@ public class RoomService {
 
 
         return Mapper.toRomResponseDto(roomRepo.save(room));
+
+    }
+
+    public List<RoomResponseDto> getAllRoom() {
+
+        List<Room> rooms= roomRepo.findAll();
+
+        return rooms.stream()
+                .map(Mapper::toRomResponseDto)
+                .toList();
+
 
     }
 }
