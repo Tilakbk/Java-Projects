@@ -2,11 +2,14 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.HostelRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.HostelResponseDTO;
+import com.hcms.hostelcomplaintmanagementsystem.dto.RoomResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.HostelNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StaffNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Hostel;
+import com.hcms.hostelcomplaintmanagementsystem.model.Room;
 import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
+import com.hcms.hostelcomplaintmanagementsystem.repository.RoomRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +21,12 @@ public class HostelService {
 
     private final HostelRepo hostelRepo;
     private final StaffRepo staffRepo;
+    private final RoomRepo roomRepo;
 
-    public HostelService(HostelRepo hostelRepo, StaffRepo staffRepo) {
+    public HostelService(HostelRepo hostelRepo, StaffRepo staffRepo, RoomRepo roomRepo) {
         this.staffRepo=staffRepo;
         this.hostelRepo = hostelRepo;
+        this.roomRepo= roomRepo;
     }
 
 
@@ -49,6 +54,19 @@ public class HostelService {
         Hostel hostel= hostelRepo.findById(id).orElseThrow(()-> new HostelNotValidException(id+" This hostel does not exist"));
 
         return Mapper.toHostelResponseDto(hostel);
+
+    }
+
+    public List<RoomResponseDto> getHostelRoomById(UUID id) {
+
+         List<Room> rooms= roomRepo.findByHostel_HostelId(id);
+
+        return rooms.stream()
+                 .map(Mapper::toRomResponseDto)
+                 .toList();
+
+
+
 
     }
 }

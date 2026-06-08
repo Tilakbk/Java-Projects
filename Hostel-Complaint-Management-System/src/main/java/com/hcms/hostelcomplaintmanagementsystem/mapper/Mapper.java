@@ -2,6 +2,7 @@ package com.hcms.hostelcomplaintmanagementsystem.mapper;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.*;
 import com.hcms.hostelcomplaintmanagementsystem.model.Hostel;
+import com.hcms.hostelcomplaintmanagementsystem.model.Room;
 import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.model.Student;
 
@@ -16,7 +17,7 @@ public class Mapper {
         studentResponseDto.setName(student.getName());
         studentResponseDto.setEmail(student.getEmail());
         studentResponseDto.setPhone(student.getPhone());
-        studentResponseDto.setRoom_number(student.getRoom().getRoom_number());
+        studentResponseDto.setRoom_number(student.getRoom().getRoomNumber());
         studentResponseDto.setHostel_name(student.getHostel().getName());
 
         return studentResponseDto;
@@ -61,6 +62,7 @@ public class Mapper {
     public static HostelResponseDTO toHostelResponseDto(Hostel hostel)
     {
         HostelResponseDTO hostelResponseDTO = new HostelResponseDTO();
+        hostelResponseDTO.setId(hostel.getHostelId());
         hostelResponseDTO.setName(hostel.getName());
         hostelResponseDTO.setAddress(hostel.getAddress());
         hostelResponseDTO.setWardenName(hostel.getStaff().getName());
@@ -74,6 +76,16 @@ public class Mapper {
         hostel.setName(hostelRequestDto.getName());
         hostel.setAddress(hostelRequestDto.getAddress());
          return  hostel;
+    }
+
+    public static RoomResponseDto toRomResponseDto(Room room)
+    {
+        RoomResponseDto roomResponseDto= new RoomResponseDto();
+        roomResponseDto.setRoomId(room.getRoomId());
+        roomResponseDto.setRoomNumber(room.getRoomNumber());
+        roomResponseDto.setRoomCapacity(room.getCapacity());
+
+        return roomResponseDto;
     }
 
 }

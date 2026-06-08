@@ -19,7 +19,7 @@ public class Room {
     private UUID roomId;
 
     @NotNull
-    private int room_number;
+    private int roomNumber;
 
     @NotNull
     private int capacity;
