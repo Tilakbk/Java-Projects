@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -27,4 +28,7 @@ public class Hostel {
     @OneToOne
     @JoinColumn(name ="warden_id", nullable = false)
     private Staff staff;
+
+    @OneToMany(mappedBy = "hostel",cascade = CascadeType.ALL)
+    private List<Room> rooms;
 }
