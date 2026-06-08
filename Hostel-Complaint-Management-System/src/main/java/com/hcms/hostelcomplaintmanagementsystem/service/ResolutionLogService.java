@@ -12,6 +12,8 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ResolutionLogService {
 
@@ -34,5 +36,14 @@ public class ResolutionLogService {
         return Mapper.toResolutionResponseDto(resolutionLogRepo.save(resolutionLog));
 
 
+    }
+
+    public List<ResolutionLogResponseDto> getAllResolutionLog() {
+
+        List<ResolutionLog> resolutionLog= resolutionLogRepo.findAll();
+
+       return resolutionLog.stream()
+                .map(Mapper::toResolutionResponseDto)
+                .toList();
     }
 }

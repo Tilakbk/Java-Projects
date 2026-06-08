@@ -6,10 +6,9 @@ import com.hcms.hostelcomplaintmanagementsystem.model.ResolutionLog;
 import com.hcms.hostelcomplaintmanagementsystem.service.ResolutionLogService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -26,4 +25,12 @@ public class ResolutionLogController {
     {
         return ResponseEntity.ok(resolutionLogService.addResolutionLog(resolutionLogRequestDto));
     }
+
+    @GetMapping("/resolution-log")
+    public ResponseEntity<List<ResolutionLogResponseDto>> getAllResolutionLog()
+    {
+        return ResponseEntity.ok(resolutionLogService.getAllResolutionLog());
+    }
+
+
 }
