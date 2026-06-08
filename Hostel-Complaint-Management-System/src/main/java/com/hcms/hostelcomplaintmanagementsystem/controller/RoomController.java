@@ -1,8 +1,12 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.RoomRequestDto;
+import com.hcms.hostelcomplaintmanagementsystem.dto.RoomResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.service.RoomService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -12,5 +16,17 @@ public class RoomController {
 
     public RoomController(RoomService roomService) {
         this.roomService = roomService;
+    }
+
+    @PostMapping("/room")
+    public ResponseEntity<RoomResponseDto> getAllRoom(@RequestBody RoomRequestDto roomRequestDto)
+    {
+
+    }
+
+    @GetMapping("/room")
+    public ResponseEntity<List<RoomResponseDto>> getAllRoom()
+    {
+
     }
 }
