@@ -1,6 +1,7 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
 import com.hcms.hostelcomplaintmanagementsystem.model.ResolutionLog;
+import com.hcms.hostelcomplaintmanagementsystem.service.ResolutionLogService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
