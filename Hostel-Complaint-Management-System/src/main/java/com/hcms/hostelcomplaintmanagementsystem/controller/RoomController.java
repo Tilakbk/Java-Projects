@@ -3,7 +3,9 @@ package com.hcms.hostelcomplaintmanagementsystem.controller;
 import com.hcms.hostelcomplaintmanagementsystem.dto.RoomRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.RoomResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.service.RoomService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class RoomController {
     }
 
     @PostMapping("/room")
-    public ResponseEntity<RoomResponseDto> addRoom(@RequestBody RoomRequestDto roomRequestDto)
+    public ResponseEntity<RoomResponseDto> addRoom(@Valid @RequestBody RoomRequestDto roomRequestDto)
     {
         return ResponseEntity.ok(roomService.addRoom(roomRequestDto));
 

@@ -3,6 +3,7 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 import com.hcms.hostelcomplaintmanagementsystem.dto.RoomRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.RoomResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.HostelNotValidException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.RoomAlreadyExistsException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Room;
 import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
@@ -22,7 +23,7 @@ public class RoomService {
 
     public RoomResponseDto addRoom(RoomRequestDto roomRequestDto) {
 
-        if (roomRepo.existsByRoomNumber(roomRequestDto.getRoomNumber()))
+        if (roomRepo.existsByRoomNumberAndHostel_HostelId(roomRequestDto.getRoomNumber(),roomRequestDto.getHostelId()))
         {
             throw new RoomAlreadyExistsException("This room already exists");
         }
