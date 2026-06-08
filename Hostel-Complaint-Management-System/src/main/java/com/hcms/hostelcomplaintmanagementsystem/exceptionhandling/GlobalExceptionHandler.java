@@ -109,5 +109,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errorDto);
     }
 
+    @ExceptionHandler(ResolutionLogNotValidException.class)
+    public ResponseEntity<ApiErrorDto> handleResolutionLogNotValidException(ResolutionLogNotValidException e, HttpServletRequest request)
+    {
+        log.warn("Resolution not valid: {}", e.getMessage());
+        ApiErrorDto errorDto= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Resolution not found",e.getMessage(),request.getRequestURI());
+
+        return ResponseEntity.badRequest().body(errorDto);
+    }
+
 
 }

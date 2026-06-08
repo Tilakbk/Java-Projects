@@ -39,6 +39,22 @@ public class ResolutionLogController {
         return ResponseEntity.ok(resolutionLogService.getResolutionLogById(id));
     }
 
+    @GetMapping("/resolution-log/complaint/{complaintId}")
+    public ResponseEntity<List<ResolutionLogResponseDto>> getResolutionLogByComplaintId(@PathVariable UUID complaintId)
+    {
+        return ResponseEntity.ok(resolutionLogService.getResolutionLogByComplaintId(complaintId));
+    }
+
+    @GetMapping("/resolution-log/staff/{staffId}")
+    public ResponseEntity<List<ResolutionLogResponseDto>> getResolutionLogByStaffId(@PathVariable UUID staffId)
+    {
+        return ResponseEntity.ok(resolutionLogService.getResolutionLogByStaffId(staffId));
+    }
+
+
+
+
+
 
 
 }

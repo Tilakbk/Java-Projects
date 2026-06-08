@@ -3,9 +3,12 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 import com.hcms.hostelcomplaintmanagementsystem.dto.ResolutionLogRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.ResolutionLogResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.ComplaintNotFoundException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.ResolutionLogNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StaffNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
+import com.hcms.hostelcomplaintmanagementsystem.model.Complaint;
 import com.hcms.hostelcomplaintmanagementsystem.model.ResolutionLog;
+import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.repository.ComplaintRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.ResolutionLogRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
@@ -51,6 +54,31 @@ public class ResolutionLogService {
     public ResolutionLogResponseDto getResolutionLogById(UUID id) {
 
         ResolutionLog resolutionLog= resolutionLogRepo.findById(id).orElseThrow(()->new ResolutionLogNotValidException(id+" Resolution log with this id does not exist"));
+
+        return Mapper.toResolutionResponseDto(resolutionLog);
+
+    }
+
+    public List<ResolutionLogResponseDto> getResolutionLogByComplaintId(UUID complaintId) {
+
+        Complaint complaint= complaintRepo.findById(complaintId).orElseThrow(()->new ComplaintNotFoundException(complaintId+" Complaint with this id does not exist"));
+
+        List<ResolutionLog> resolutionLogs= complaint.getResolutionLogs();
+
+       return resolutionLogs.stream()
+                .map(Mapper::toResolutionResponseDto)
+                .toList();
+    }
+
+    public List<ResolutionLogResponseDto> getResolutionLogByStaffId(UUID staffId) {
+
+        Staff staff= staffRepo.findById(staffId).orElseThrow(()->new StaffNotValidException(staffId+" Staff with this id does not exist"));
+
+        List<ResolutionLog> resolutionLogs= staff.getResolutionLogs();
+
+       return resolutionLogs.stream()
+                .map(Mapper::toResolutionResponseDto)
+                .toList();
 
     }
 }

@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
+import java.util.List;
 import java.util.UUID;
 
 
@@ -31,6 +32,9 @@ public class Staff {
 
     @NotNull
     private String phone;
+
+    @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL)
+    private List<ResolutionLog> resolutionLogs;
 
 
 }
