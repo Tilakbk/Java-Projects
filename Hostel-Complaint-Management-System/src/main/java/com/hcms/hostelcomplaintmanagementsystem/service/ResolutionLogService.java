@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ResolutionLogService {
@@ -45,5 +46,11 @@ public class ResolutionLogService {
        return resolutionLog.stream()
                 .map(Mapper::toResolutionResponseDto)
                 .toList();
+    }
+
+    public ResolutionLogResponseDto getResolutionLogById(UUID id) {
+
+        ResolutionLog resolutionLog= resolutionLogRepo.findById(id).orElseThrow(()->new ResolutionLogNotValidException(id+" Resolution log with this id does not exist"));
+
     }
 }

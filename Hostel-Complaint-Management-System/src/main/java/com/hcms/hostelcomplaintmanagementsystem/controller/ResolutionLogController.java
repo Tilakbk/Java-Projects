@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -31,6 +32,13 @@ public class ResolutionLogController {
     {
         return ResponseEntity.ok(resolutionLogService.getAllResolutionLog());
     }
+
+    @GetMapping("/resolution-log/{id}")
+    public ResponseEntity<ResolutionLogResponseDto> getResolutionLogById(@PathVariable UUID id)
+    {
+        return ResponseEntity.ok(resolutionLogService.getResolutionLogById(id));
+    }
+
 
 
 }
