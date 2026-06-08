@@ -99,4 +99,13 @@ public class GlobalExceptionHandler {
         ApiErrorDto apiErrorDto= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Room already exists",e.getMessage(),request.getRequestURI());
         return ResponseEntity.badRequest().body(apiErrorDto);
     }
+
+    @ExceptionHandler(ComplaintNotFoundException.class)
+    public ResponseEntity<ApiErrorDto> handleComplaintNotFoundException(ComplaintNotFoundException e, HttpServletRequest request)
+    {
+        log.warn("Complaint not valid: {}", e.getMessage());
+        ApiErrorDto errorDto= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Complaint not found",e.getMessage(),request.getRequestURI());
+
+        return ResponseEntity.badRequest().body(errorDto);
+    }
 }

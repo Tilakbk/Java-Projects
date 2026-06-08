@@ -3,6 +3,7 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 import com.hcms.hostelcomplaintmanagementsystem.dto.ResolutionLogRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.ResolutionLogResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.ComplaintNotFoundException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StaffNotFoundException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.ResolutionLog;
 import com.hcms.hostelcomplaintmanagementsystem.repository.ComplaintRepo;
@@ -28,6 +29,7 @@ public class ResolutionLogService {
 
         ResolutionLog resolutionLog= Mapper.toResolutionLog(resolutionLogRequestDto);
         resolutionLog.setComplaint(complaintRepo.findById(resolutionLogRequestDto.getComplaintId()).orElseThrow(()->new ComplaintNotFoundException(resolutionLogRequestDto.getComplaintId()+" Complaint with this id does not exists")));
+        resolutionLog.setStaff(staffRepo.findById(resolutionLogRequestDto.getStaffId()).orElseThrow(()-> new StaffNotFoundException(resolutionLogRequestDto.getStaffId()+" Staff with this id does not exists ")));
 
 
     }
