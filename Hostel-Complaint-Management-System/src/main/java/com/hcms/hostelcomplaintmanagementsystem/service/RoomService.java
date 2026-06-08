@@ -6,6 +6,7 @@ import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.HostelNotValid
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.RoomAlreadyExistsException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.RoomNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
+import com.hcms.hostelcomplaintmanagementsystem.model.Hostel;
 import com.hcms.hostelcomplaintmanagementsystem.model.Room;
 import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.RoomRepo;
@@ -55,6 +56,17 @@ public class RoomService {
         Room room = roomRepo.findById(id).orElseThrow(()->new RoomNotValidException(id+" Room with this id does not exists"));
 
         return Mapper.toRomResponseDto(room);
+
+    }
+
+    public List<RoomResponseDto> getRoomByHostelId(UUID hostelId) {
+
+       Hostel hostel= hostelRepo.findById(hostelId).orElseThrow(()->new HostelNotValidException(hostelId+" Not valid hostel"));
+
+       List<Room> rooms= hostel.getRooms();
+       return rooms.stream()
+               .map(Mapper::toRomResponseDto)
+               .toList();
 
     }
 }

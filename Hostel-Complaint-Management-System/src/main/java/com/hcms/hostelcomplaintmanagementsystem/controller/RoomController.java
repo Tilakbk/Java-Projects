@@ -2,6 +2,7 @@ package com.hcms.hostelcomplaintmanagementsystem.controller;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.RoomRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.RoomResponseDto;
+import com.hcms.hostelcomplaintmanagementsystem.model.Room;
 import com.hcms.hostelcomplaintmanagementsystem.service.RoomService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -38,5 +39,12 @@ public class RoomController {
     public ResponseEntity<RoomResponseDto> getRoomById(@PathVariable UUID id)
     {
         return ResponseEntity.ok(roomService.getRoomById(id));
+    }
+
+    @GetMapping("/room/hostel/{hostelId}")
+    public ResponseEntity<List<RoomResponseDto>> getRoomByHostelId(@PathVariable UUID hostelId)
+    {
+        return ResponseEntity.ok(roomService.getRoomByHostelId(hostelId));
+
     }
 }
