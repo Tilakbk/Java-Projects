@@ -89,6 +89,14 @@ public class GlobalExceptionHandler {
 
         ApiErrorDto errorDto= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Staff not valid",e.getMessage(),request.getRequestURI());
 
-        return ResponseEntity.ok(errorDto);
+        return ResponseEntity.badRequest().body(errorDto);
+    }
+
+    @ExceptionHandler(RoomAlreadyExistsException.class)
+    public ResponseEntity<ApiErrorDto> handleRoomAlreadyExistException(RoomAlreadyExistsException e,HttpServletRequest request)
+    {
+        log.warn("Room exists: {}",e.getMessage());
+        ApiErrorDto apiErrorDto= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Room already exists",e.getMessage(),request.getRequestURI());
+        return ResponseEntity.badRequest().body(apiErrorDto);
     }
 }
