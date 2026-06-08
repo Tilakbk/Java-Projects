@@ -19,14 +19,15 @@ public class RoomController {
     }
 
     @PostMapping("/room")
-    public ResponseEntity<RoomResponseDto> getAllRoom(@RequestBody RoomRequestDto roomRequestDto)
+    public ResponseEntity<RoomResponseDto> addRoom(@RequestBody RoomRequestDto roomRequestDto)
     {
+        return ResponseEntity.ok(roomService.addRoom(roomRequestDto));
 
     }
 
-    @GetMapping("/room")
-    public ResponseEntity<List<RoomResponseDto>> getAllRoom()
-    {
-
-    }
+//    @GetMapping("/room")
+//    public ResponseEntity<List<RoomResponseDto>> getAllRoom()
+//    {
+//
+//    }
 }

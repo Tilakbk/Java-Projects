@@ -88,4 +88,13 @@ public class Mapper {
         return roomResponseDto;
     }
 
+    public static Room toRoom(RoomRequestDto roomRequestDto)
+    {
+        Room room= new Room();
+        room.setRoomNumber(roomRequestDto.getRoomNumber());
+        room.setCapacity(roomRequestDto.getRoomCapacity());
+
+        return room;
+    }
+
 }

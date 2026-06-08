@@ -1,0 +1,10 @@
+### post for room
+
+POST http://localhost:8080/api/room
+Content-Type: application/json
+
+{
+  "hostelId": "d90fb5ed-4ba6-401b-b3f8-f4d985762df1",
+  "roomNumber": 104,
+  "roomCapacity": 3
+}

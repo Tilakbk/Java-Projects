@@ -19,6 +19,7 @@ public class Room {
     private UUID roomId;
 
     @NotNull
+    @Column(unique = true)
     private int roomNumber;
 
     @NotNull
