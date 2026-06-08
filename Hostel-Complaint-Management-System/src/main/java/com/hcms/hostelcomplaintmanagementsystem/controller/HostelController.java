@@ -46,5 +46,11 @@ public class HostelController {
         return ResponseEntity.ok(hostelService.getHostelRoomById(id));
     }
 
+    @PutMapping("/hostel/{id}")
+    public ResponseEntity<HostelResponseDTO> updateHostel( @RequestBody HostelRequestDto hostelRequestDto, @PathVariable UUID id)
+    {
+        return ResponseEntity.ok(hostelService.updateHostel(hostelRequestDto,id));
+    }
+
 
 }

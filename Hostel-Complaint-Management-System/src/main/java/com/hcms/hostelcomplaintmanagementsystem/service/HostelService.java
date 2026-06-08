@@ -69,4 +69,15 @@ public class HostelService {
 
 
     }
+
+    public HostelResponseDTO updateHostel(HostelRequestDto hostelRequestDto, UUID id) {
+
+        Hostel hostel = hostelRepo.findById(id).orElseThrow(()->new HostelNotValidException(id+" This hostel id does not exist"));
+
+        hostel.setName(hostelRequestDto.getName());
+        hostel.setAddress(hostelRequestDto.getAddress());
+
+        return Mapper.toHostelResponseDto(hostelRepo.save(hostel));
+
+    }
 }

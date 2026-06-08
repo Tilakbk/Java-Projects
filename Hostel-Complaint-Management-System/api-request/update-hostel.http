@@ -1,0 +1,9 @@
+### Put request to update hostel
+PUT http://localhost:8080/api/hostel/6676d1be-a14a-4ee9-81c4-86f263ffecd6
+Content-Type: application/json
+
+{
+  "name": "Sagarmatha Hostel",
+  "address": "Lalitpur-02, Chapahau"
+}
+
