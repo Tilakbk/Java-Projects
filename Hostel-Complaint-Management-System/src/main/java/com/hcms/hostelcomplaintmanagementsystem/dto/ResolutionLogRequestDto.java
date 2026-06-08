@@ -18,5 +18,4 @@ public class ResolutionLogRequestDto {
     @NotBlank(message = "Action is required")
     private String actionTaken;
 
-
 }

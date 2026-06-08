@@ -32,7 +32,7 @@ public class ResolutionLog {
     private Staff staff;
 
     @NotNull
-    private String action_taken;
+    private String actionTaken;
 
     @CreatedDate
     private LocalDateTime resolved_at;

@@ -1,10 +1,7 @@
 package com.hcms.hostelcomplaintmanagementsystem.mapper;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.*;
-import com.hcms.hostelcomplaintmanagementsystem.model.Hostel;
-import com.hcms.hostelcomplaintmanagementsystem.model.Room;
-import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
-import com.hcms.hostelcomplaintmanagementsystem.model.Student;
+import com.hcms.hostelcomplaintmanagementsystem.model.*;
 
 
 public class Mapper {
@@ -97,4 +94,24 @@ public class Mapper {
         return room;
     }
 
+    public static ResolutionLogResponseDto toResolutionResponseDto(ResolutionLog resolutionLog)
+    {
+        ResolutionLogResponseDto resolutionLogResponseDto= new ResolutionLogResponseDto();
+
+        resolutionLogResponseDto.setResolutionLogId(resolutionLog.getLogId());
+        resolutionLogResponseDto.setComplaint(resolutionLog.getComplaint().getDescription());
+        resolutionLogResponseDto.setStaffName(resolutionLog.getStaff().getName());
+        resolutionLogResponseDto.setActionTaken(resolutionLog.getActionTaken());
+
+        return resolutionLogResponseDto;
+    }
+
+    public static ResolutionLog toResolutionLog(ResolutionLogRequestDto resolutionLogRequestDto)
+    {
+        ResolutionLog resolutionLog= new ResolutionLog();
+
+        resolutionLog.setActionTaken(resolutionLog.getActionTaken());
+
+        return resolutionLog;
+    }
 }

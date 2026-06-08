@@ -24,6 +24,6 @@ public class ResolutionLogController {
     @PostMapping("/resolution-log")
     public ResponseEntity<ResolutionLogResponseDto> addResolutionLog(@Valid @RequestBody ResolutionLogRequestDto resolutionLogRequestDto)
     {
-
+        return ResponseEntity.ok(resolutionLogService.addResolutionLog(resolutionLogRequestDto));
     }
 }
