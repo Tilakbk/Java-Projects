@@ -52,5 +52,12 @@ public class HostelController {
         return ResponseEntity.ok(hostelService.updateHostel(hostelRequestDto,id));
     }
 
+    @DeleteMapping("/hostel/{id}")
+    public ResponseEntity<?> deleteHostel(@PathVariable UUID id)
+    {
+        hostelService.deleteHostel(id);
+        return ResponseEntity.ok("Deleted successfully");
+    }
+
 
 }

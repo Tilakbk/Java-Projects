@@ -80,4 +80,11 @@ public class HostelService {
         return Mapper.toHostelResponseDto(hostelRepo.save(hostel));
 
     }
+
+    public void deleteHostel(UUID id) {
+
+        hostelRepo.delete(hostelRepo.findById(id).orElseThrow(()-> new HostelNotValidException(id+" This id does not belongs to any hostel")));
+
+
+    }
 }
