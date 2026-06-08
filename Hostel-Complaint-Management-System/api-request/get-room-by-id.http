@@ -1,0 +1,2 @@
+### GET room by id for room
+GET http://localhost:8080/api/room/44bc8140-d141-46d6-a329-95feaf751504

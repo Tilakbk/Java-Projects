@@ -4,6 +4,7 @@ import com.hcms.hostelcomplaintmanagementsystem.dto.RoomRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.RoomResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.HostelNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.RoomAlreadyExistsException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.RoomNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Room;
 import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
@@ -11,6 +12,7 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.RoomRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class RoomService {
@@ -45,6 +47,14 @@ public class RoomService {
                 .map(Mapper::toRomResponseDto)
                 .toList();
 
+
+    }
+
+    public RoomResponseDto getRoomById(UUID id) {
+
+        Room room = roomRepo.findById(id).orElseThrow(()->new RoomNotValidException(id+" Room with this id does not exists"));
+
+        return Mapper.toRomResponseDto(room);
 
     }
 }

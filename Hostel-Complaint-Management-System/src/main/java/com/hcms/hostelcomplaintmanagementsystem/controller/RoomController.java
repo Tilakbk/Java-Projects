@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -31,5 +32,11 @@ public class RoomController {
     public ResponseEntity<List<RoomResponseDto>> getAllRoom()
     {
         return ResponseEntity.ok(roomService.getAllRoom());
+    }
+
+    @GetMapping("/room/{id}")
+    public ResponseEntity<RoomResponseDto> getRoomById(@PathVariable UUID id)
+    {
+        return ResponseEntity.ok(roomService.getRoomById(id));
     }
 }
