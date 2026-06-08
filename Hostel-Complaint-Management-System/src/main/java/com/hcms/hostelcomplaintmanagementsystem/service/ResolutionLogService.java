@@ -81,4 +81,34 @@ public class ResolutionLogService {
                 .toList();
 
     }
+
+    public ResolutionLogResponseDto updateResolutionLog(ResolutionLogRequestDto resolutionLogRequestDto,UUID id) {
+
+        ResolutionLog resolutionLog= resolutionLogRepo.findById(id).orElseThrow(()->new ResolutionLogNotValidException(id+" Log with this id not available"));
+        if (resolutionLogRequestDto.getComplaintId()!=null && complaintRepo.existsById(resolutionLogRequestDto.getComplaintId()))
+        {
+            resolutionLog.setComplaint(complaintRepo.findById(resolutionLogRequestDto.getComplaintId()).orElseThrow(()-> new ComplaintNotFoundException(resolutionLogRequestDto.getComplaintId()+" Complaint with this id does not exist")));
+        }
+
+        if (resolutionLogRequestDto.getStaffId()!=null && staffRepo.existsById(resolutionLogRequestDto.getStaffId()))
+        {
+            resolutionLog.setStaff(staffRepo.findById(resolutionLogRequestDto.getStaffId()).orElseThrow(()-> new StaffNotValidException(resolutionLogRequestDto.getStaffId()+" Staff with this id does not exist")));
+        }
+
+        if (resolutionLogRequestDto.getActionTaken()!=null)
+        {
+            resolutionLog.setActionTaken(resolutionLogRequestDto.getActionTaken());
+        }
+
+        return Mapper.toResolutionResponseDto(resolutionLogRepo.save(resolutionLog));
+    }
+
+    public void deleteResolutionLog(UUID id) {
+
+       ResolutionLog resolutionLog= resolutionLogRepo.findById(id).orElseThrow(()-> new ResolutionLogNotValidException(id+" Log with this id does not exist"));
+
+       resolutionLogRepo.delete(resolutionLog);
+
+
+    }
 }
