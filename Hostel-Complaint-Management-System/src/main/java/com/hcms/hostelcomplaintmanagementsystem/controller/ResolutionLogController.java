@@ -63,10 +63,4 @@ public class ResolutionLogController {
         return ResponseEntity.ok("Deleted successfully");
     }
 
-
-
-
-
-
-
 }
