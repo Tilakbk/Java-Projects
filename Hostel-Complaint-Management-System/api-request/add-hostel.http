@@ -3,7 +3,7 @@ POST http://localhost:8080/api/hostel
 Content-Type: application/json
 
 {
-  "name": "Arju  Hostel",
-  "address": "Kathmandu-11,Lazimpat",
+  "name": "Sagarmatha girls  Hostel",
+  "address": "Bhaktapur",
   "wardenId": "a1b2c3d4-0001-0000-0000-000000000002"
 }

@@ -133,4 +133,26 @@ public class Mapper {
 
         return category;
     }
+
+    public static ComplaintResponseDto toComplaintResponseDto(Complaint complaint)
+    {
+        ComplaintResponseDto complaintResponseDto= new ComplaintResponseDto();
+        complaintResponseDto.setComplaintId(complaint.getComplaintId());
+        complaintResponseDto.setStudentName(complaint.getStudent().getName());
+        complaintResponseDto.setCategoryName(complaint.getCategory().getCategoryName());
+        complaintResponseDto.setDescription(complaint.getDescription());
+        complaintResponseDto.setStatus(complaint.getStatus());
+
+        return complaintResponseDto;
+    }
+
+    public static Complaint toComplaint(ComplaintRequestDto complaintRequestDto)
+    {
+        Complaint complaint= new Complaint();
+
+        complaint.setDescription(complaintRequestDto.getDescription());
+
+
+        return complaint;
+    }
 }

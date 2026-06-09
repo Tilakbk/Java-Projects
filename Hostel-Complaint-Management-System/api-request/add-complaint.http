@@ -1,0 +1,9 @@
+
+POST http://localhost:8080/api/complaint
+Content-Type: application/json
+
+{
+  "categoryName": "Water",
+  "description": "Water heater not working",
+  "studentName": "Dev sunar"
+}

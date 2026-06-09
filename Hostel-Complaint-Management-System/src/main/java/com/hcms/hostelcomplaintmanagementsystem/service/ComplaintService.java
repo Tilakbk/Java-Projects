@@ -1,20 +1,53 @@
 package com.hcms.hostelcomplaintmanagementsystem.service;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.ComplaintRequestDto;
+import com.hcms.hostelcomplaintmanagementsystem.dto.ComplaintResponseDto;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.CategoryNotValidException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StudentNotValidException;
+import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
+import com.hcms.hostelcomplaintmanagementsystem.model.Complaint;
+import com.hcms.hostelcomplaintmanagementsystem.repository.CategoryRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.ComplaintRepo;
+import com.hcms.hostelcomplaintmanagementsystem.repository.StudentRepo;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ComplaintService {
     
     private final ComplaintRepo complaintRepo;
+    private final StudentRepo studentRepo;
+    private final CategoryRepo categoryRepo;
 
-    public ComplaintService(ComplaintRepo complaintRepo) {
+    public ComplaintService(ComplaintRepo complaintRepo, StudentRepo studentRepo, CategoryRepo categoryRepo) {
         this.complaintRepo = complaintRepo;
+        this.studentRepo = studentRepo;
+        this.categoryRepo = categoryRepo;
     }
 
-
     public ComplaintResponseDto addComplaint(ComplaintRequestDto complaintRequestDto) {
-        return null;
+
+        Complaint complaint= Mapper.toComplaint(complaintRequestDto);
+        var student= studentRepo.findByName(complaintRequestDto.getStudentName());
+        if (student==null)
+        {
+            throw new StudentNotValidException(complaintRequestDto.getStudentName()+" Student with this name does not exist");
+        }
+        else
+            complaint.setStudent(student);
+
+        var category= categoryRepo.findByCategoryName(complaintRequestDto.getCategoryName());
+
+        if (category==null)
+        {
+            throw new CategoryNotValidException(complaintRequestDto.getCategoryName()+" Category with this name does not exist");
+        }
+
+        else
+            complaint.setCategory(category);
+
+        complaint.setStatus("pending");
+
+        return Mapper.toComplaintResponseDto(complaintRepo.save(complaint));
+
     }
 }
