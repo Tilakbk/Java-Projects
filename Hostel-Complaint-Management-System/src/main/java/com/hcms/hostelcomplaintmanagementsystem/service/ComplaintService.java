@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.service;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.ComplaintRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.repository.ComplaintRepo;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,6 @@ public class ComplaintService {
 
 
     public ComplaintResponseDto addComplaint(ComplaintRequestDto complaintRequestDto) {
+        return null;
     }
 }
