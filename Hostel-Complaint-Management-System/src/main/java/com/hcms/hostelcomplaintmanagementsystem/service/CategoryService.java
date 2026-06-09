@@ -65,4 +65,12 @@ public class CategoryService {
 
 
     }
+
+    public void deleteCategory(UUID id) {
+
+        Category category= categoryRepo.findById(id).orElseThrow(()->new CategoryNotValidException(id+" Category with this id does not exist"));
+
+        categoryRepo.delete(category);
+
+    }
 }
