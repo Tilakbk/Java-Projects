@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.CategoryRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.service.CategoryService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
