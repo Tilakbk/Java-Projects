@@ -57,4 +57,11 @@ public class ComplaintController {
         return ResponseEntity.ok(complaintService.updateComplaint(id,complaintRequestDto));
     }
 
+    @DeleteMapping("/complaint/{id}")
+    public ResponseEntity<String> deleteComplaint(@PathVariable UUID id)
+    {
+        complaintService.deleteComplaint(id);
+        return ResponseEntity.ok("Deleted successfully");
+    }
+
 }

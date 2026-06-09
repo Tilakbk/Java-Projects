@@ -118,4 +118,11 @@ public class ComplaintService {
         return Mapper.toComplaintResponseDto(complaintRepo.save(complaint));
 
     }
+
+    public void deleteComplaint(UUID id) {
+
+        Complaint complaint= complaintRepo.findById(id).orElseThrow(()->new ComplaintNotFoundException(id+" : Complaint with this id does not exist"));
+        complaintRepo.delete(complaint);
+
+    }
 }
