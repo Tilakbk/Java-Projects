@@ -11,4 +11,8 @@ public class CategoryService {
     public CategoryService(CategoryRepo categoryRepo) {
         this.categoryRepo = categoryRepo;
     }
+
+    public CategoryResponseDto addCategory(CategoryRequestDto categoryRequestDto) {
+
+    }
 }
