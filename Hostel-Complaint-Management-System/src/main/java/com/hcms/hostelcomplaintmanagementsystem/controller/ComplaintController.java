@@ -51,5 +51,10 @@ public class ComplaintController {
         return ResponseEntity.ok(complaintService.getComplaintByStudent(studentId));
     }
 
+    @PutMapping("/complaint/{id}")
+    public ResponseEntity<ComplaintResponseDto> updateComplaint(@PathVariable UUID id,@RequestBody ComplaintRequestDto complaintRequestDto)
+    {
+        return ResponseEntity.ok(complaintService.updateComplaint(id,complaintRequestDto));
+    }
 
 }

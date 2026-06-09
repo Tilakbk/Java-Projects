@@ -95,4 +95,27 @@ public class ComplaintService {
 
 
     }
+
+    public ComplaintResponseDto updateComplaint(UUID id, ComplaintRequestDto complaintRequestDto) {
+
+        Complaint complaint= complaintRepo.findById(id).orElseThrow(()-> new ComplaintNotFoundException(id+" : Complaint with this id does not exist"));
+
+        if (complaintRequestDto.getStudentName()!=null && studentRepo.existsByName(complaintRequestDto.getStudentName()))
+        {
+            complaint.setStudent(studentRepo.findByName(complaintRequestDto.getStudentName()));
+        }
+
+        if (complaintRequestDto.getCategoryName()!=null && categoryRepo.existsByCategoryName(complaintRequestDto.getCategoryName()))
+        {
+            complaint.setCategory(categoryRepo.findByCategoryName(complaintRequestDto.getCategoryName()));
+        }
+
+        if (complaintRequestDto.getDescription()!=null)
+        {
+            complaint.setDescription(complaint.getDescription());
+        }
+
+        return Mapper.toComplaintResponseDto(complaintRepo.save(complaint));
+
+    }
 }
