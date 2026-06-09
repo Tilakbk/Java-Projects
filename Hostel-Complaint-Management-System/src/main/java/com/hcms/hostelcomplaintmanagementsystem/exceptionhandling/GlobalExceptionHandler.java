@@ -118,5 +118,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errorDto);
     }
 
+    @ExceptionHandler(CategoryNotValidException.class)
+    public ResponseEntity<ApiErrorDto> handleCategoryNotValidException(CategoryNotValidException e, HttpServletRequest request)
+    {
+        log.warn("Category not valid: {}", e.getMessage());
+        ApiErrorDto errorDto= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Category not found",e.getMessage(),request.getRequestURI());
+
+        return ResponseEntity.badRequest().body(errorDto);
+    }
+
 
 }
