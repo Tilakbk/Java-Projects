@@ -2,6 +2,7 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.CategoryRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.CategoryResponseDto;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.CategoryAlreadyExistException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.CategoryNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Category;

@@ -127,5 +127,14 @@ public class GlobalExceptionHandler {
         return ResponseEntity.badRequest().body(errorDto);
     }
 
+    @ExceptionHandler(CategoryAlreadyExistException.class)
+    public ResponseEntity<ApiErrorDto> handleCategoryAlreadyExistException(CategoryAlreadyExistException e, HttpServletRequest request)
+    {
+        log.warn("Category already exist: {}", e.getMessage());
+        ApiErrorDto errorDto= new ApiErrorDto(HttpStatus.BAD_REQUEST.value(), "Category already exist",e.getMessage(),request.getRequestURI());
+
+        return ResponseEntity.badRequest().body(errorDto);
+    }
+
 
 }
