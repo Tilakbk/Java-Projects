@@ -38,4 +38,12 @@ public class ComplaintController {
     {
         return ResponseEntity.ok(complaintService.getComplaintById(id));
     }
+
+    @GetMapping("/complaint/status/{status}")
+    public ResponseEntity<List<ComplaintResponseDto>> getComplaintByStatus(@PathVariable String status)
+    {
+        return ResponseEntity.ok(complaintService.getComplaintByStatus(status));
+    }
+
+
 }

@@ -72,4 +72,16 @@ public class ComplaintService {
         return Mapper.toComplaintResponseDto(complaint);
 
     }
+
+    public List<ComplaintResponseDto> getComplaintByStatus(String status) {
+
+       List<Complaint>  complaint= complaintRepo.findAllByStatus(status);
+
+       return complaint.stream()
+               .map(Mapper::toComplaintResponseDto)
+               .toList();
+
+
+
+    }
 }
