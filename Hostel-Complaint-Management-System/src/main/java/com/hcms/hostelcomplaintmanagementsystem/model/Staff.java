@@ -36,5 +36,8 @@ public class Staff {
     @OneToMany(mappedBy = "staff",cascade = CascadeType.ALL)
     private List<ResolutionLog> resolutionLogs;
 
+    @OneToMany(mappedBy = "assignedStaff", cascade = CascadeType.ALL)
+    private List<Complaint> assignedComplaint;
+
 
 }

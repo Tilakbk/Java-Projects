@@ -137,6 +137,7 @@ public class Mapper {
     public static ComplaintResponseDto toComplaintResponseDto(Complaint complaint)
     {
         ComplaintResponseDto complaintResponseDto= new ComplaintResponseDto();
+
         complaintResponseDto.setComplaintId(complaint.getComplaintId());
         complaintResponseDto.setStudentName(complaint.getStudent().getName());
         complaintResponseDto.setCategoryName(complaint.getCategory().getCategoryName());
@@ -145,6 +146,21 @@ public class Mapper {
 
         return complaintResponseDto;
     }
+
+    public static ComplaintAssignResponseDto toComplaintAssignResponseDto(Complaint complaint)
+    {
+        ComplaintAssignResponseDto complaintAssignResponseDto= new ComplaintAssignResponseDto();
+
+        complaintAssignResponseDto.setComplaintId(complaint.getComplaintId());
+        complaintAssignResponseDto.setStudentName(complaint.getStudent().getName());
+        complaintAssignResponseDto.setCategoryName(complaint.getCategory().getCategoryName());
+        complaintAssignResponseDto.setDescription(complaint.getDescription());
+        complaintAssignResponseDto.setStatus(complaint.getStatus());
+        complaintAssignResponseDto.setAssignedStaff(complaint.getAssignedStaff().getName());
+
+        return complaintAssignResponseDto;
+    }
+
 
     public static Complaint toComplaint(ComplaintRequestDto complaintRequestDto)
     {

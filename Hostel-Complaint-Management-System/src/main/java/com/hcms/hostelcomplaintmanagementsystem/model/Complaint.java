@@ -49,4 +49,8 @@ public class Complaint {
     @OneToMany(mappedBy = "complaint",cascade = CascadeType.ALL)
     private List<ResolutionLog> resolutionLogs;
 
+    @ManyToOne
+    @JoinColumn(name = "assigned_staff",nullable =true)
+    private Staff assignedStaff;
+
 }

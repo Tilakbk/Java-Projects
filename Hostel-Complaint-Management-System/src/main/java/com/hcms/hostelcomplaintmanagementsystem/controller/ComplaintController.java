@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
+import com.hcms.hostelcomplaintmanagementsystem.dto.ComplaintAssignResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.ComplaintRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.ComplaintResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.service.ComplaintService;
@@ -62,6 +63,18 @@ public class ComplaintController {
     {
         complaintService.deleteComplaint(id);
         return ResponseEntity.ok("Deleted successfully");
+    }
+
+    @PutMapping("/complaint/{complaintId}/staff/{staffId}")
+    public ResponseEntity<ComplaintAssignResponseDto> assignStaffToComplaint(@PathVariable UUID complaintId, @PathVariable UUID staffId)
+    {
+        return ResponseEntity.ok(complaintService.assignStaffToComplaint(complaintId,staffId));
+    }
+
+    @GetMapping("/complaint/staff/{staffId}")
+    public ResponseEntity<List<ComplaintResponseDto>> getComplaintByStaff(@PathVariable UUID staffId)
+    {
+        return ResponseEntity.ok(complaintService.getComplaintByStaff(staffId));
     }
 
 }
