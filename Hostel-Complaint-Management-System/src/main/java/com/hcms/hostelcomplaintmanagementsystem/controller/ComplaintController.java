@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api")
 public class ComplaintController {
@@ -22,6 +24,12 @@ public class ComplaintController {
     public ResponseEntity<ComplaintResponseDto> addComplaint(@Validated @RequestBody ComplaintRequestDto complaintRequestDto)
     {
         return ResponseEntity.ok(complaintService.addComplaint(complaintRequestDto));
+    }
+
+    @GetMapping("/complaint")
+    public ResponseEntity<List<ComplaintResponseDto>> getAllComplaint()
+    {
+        return ResponseEntity.ok(complaintService.getAllComplaint());
     }
 
 }

@@ -11,6 +11,8 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.ComplaintRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StudentRepo;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ComplaintService {
     
@@ -48,6 +50,16 @@ public class ComplaintService {
         complaint.setStatus("pending");
 
         return Mapper.toComplaintResponseDto(complaintRepo.save(complaint));
+
+    }
+
+    public List<ComplaintResponseDto> getAllComplaint() {
+
+        List<Complaint> complaints= complaintRepo.findAll();
+
+        return complaints.stream()
+                .map(Mapper::toComplaintResponseDto)
+                .toList();
 
     }
 }
