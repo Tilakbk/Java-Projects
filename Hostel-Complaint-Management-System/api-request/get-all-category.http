@@ -1,0 +1,4 @@
+### GET request for Category
+GET http://localhost:8080/api/category
+
+###
