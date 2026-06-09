@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -32,4 +33,9 @@ public class ComplaintController {
         return ResponseEntity.ok(complaintService.getAllComplaint());
     }
 
+    @GetMapping("/complaint/{id}")
+    public ResponseEntity<ComplaintResponseDto> getComplaintById(@PathVariable UUID id)
+    {
+        return ResponseEntity.ok(complaintService.getComplaintById(id));
+    }
 }

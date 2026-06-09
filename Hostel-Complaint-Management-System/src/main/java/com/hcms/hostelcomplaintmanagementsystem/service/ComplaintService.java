@@ -3,6 +3,7 @@ package com.hcms.hostelcomplaintmanagementsystem.service;
 import com.hcms.hostelcomplaintmanagementsystem.dto.ComplaintRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.ComplaintResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.CategoryNotValidException;
+import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.ComplaintNotFoundException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StudentNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Complaint;
@@ -12,6 +13,7 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.StudentRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ComplaintService {
@@ -60,6 +62,14 @@ public class ComplaintService {
         return complaints.stream()
                 .map(Mapper::toComplaintResponseDto)
                 .toList();
+
+    }
+
+    public ComplaintResponseDto getComplaintById(UUID id) {
+
+        Complaint complaint= complaintRepo.findById(id).orElseThrow(()->new ComplaintNotFoundException(id+" : Complaint with this id does not exist"));
+
+        return Mapper.toComplaintResponseDto(complaint);
 
     }
 }
