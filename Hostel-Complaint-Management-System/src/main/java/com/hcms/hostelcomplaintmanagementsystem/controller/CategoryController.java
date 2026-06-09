@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
@@ -30,5 +31,12 @@ public class CategoryController {
     {
         return ResponseEntity.ok(categoryService.getAllCategory());
     }
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity<CategoryResponseDto> getCategoryById(@PathVariable UUID id)
+    {
+        return ResponseEntity.ok(categoryService.getCategoryById(id));
+    }
+
 
 }

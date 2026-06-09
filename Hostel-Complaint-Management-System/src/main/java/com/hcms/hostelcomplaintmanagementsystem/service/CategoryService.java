@@ -8,6 +8,7 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.CategoryRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CategoryService {
@@ -31,6 +32,12 @@ public class CategoryService {
         return categories.stream()
                 .map(Mapper::toCategoryResponseDto)
                 .toList();
+
+    }
+
+    public CategoryResponseDto getCategoryById(UUID id) {
+
+        Category category= categoryRepo.findById(id).orElseThrow(()->new CategoryNotValidException(id+" Category with this id does not exist"));
 
     }
 }
