@@ -114,4 +114,14 @@ public class Mapper {
 
         return resolutionLog;
     }
+
+    public static CategoryResponseDto toCategoryResponseDto(Category category)
+    {
+        CategoryResponseDto categoryResponseDto= new CategoryResponseDto();
+
+        categoryResponseDto.setCategoryId(category.getCategoryId());
+        categoryResponseDto.setCategoryName(category.getCategoryName());
+
+        return categoryResponseDto;
+    }
 }

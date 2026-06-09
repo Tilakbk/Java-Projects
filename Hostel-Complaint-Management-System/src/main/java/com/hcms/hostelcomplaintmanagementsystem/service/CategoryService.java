@@ -1,6 +1,7 @@
 package com.hcms.hostelcomplaintmanagementsystem.service;
 
 import com.hcms.hostelcomplaintmanagementsystem.dto.CategoryRequestDto;
+import com.hcms.hostelcomplaintmanagementsystem.dto.CategoryResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.repository.CategoryRepo;
 import org.springframework.stereotype.Service;
 
