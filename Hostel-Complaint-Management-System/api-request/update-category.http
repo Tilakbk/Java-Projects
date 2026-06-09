@@ -1,0 +1,8 @@
+### GET request to example server
+PUT http://localhost:8080/api/category/31fe5284-2ca0-49a8-be2c-452c2e4dd237
+Content-Type: application/json
+
+{
+  "categoryName": "Electronics"
+}
+

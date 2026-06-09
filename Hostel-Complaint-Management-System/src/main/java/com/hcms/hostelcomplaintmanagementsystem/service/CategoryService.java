@@ -7,6 +7,7 @@ import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.CategoryNotVal
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Category;
 import com.hcms.hostelcomplaintmanagementsystem.repository.CategoryRepo;
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +48,21 @@ public class CategoryService {
         Category category= categoryRepo.findById(id).orElseThrow(()->new CategoryNotValidException(id+" Category with this id does not exist"));
 
         return Mapper.toCategoryResponseDto(category);
+
+    }
+
+    public CategoryResponseDto updateCategory(UUID id, @Valid CategoryRequestDto categoryRequestDto) {
+
+        Category category= categoryRepo.findById(id).orElseThrow(()->new CategoryNotValidException(id+" Category with this id does not exist"));
+        if (categoryRepo.existsByCategoryName(categoryRequestDto.getCategoryName()))
+        {
+            throw new CategoryAlreadyExistException(categoryRequestDto.getCategoryName()+" This already exist");
+        }
+
+        category.setCategoryName(categoryRequestDto.getCategoryName());
+
+        return Mapper.toCategoryResponseDto(categoryRepo.save(category));
+
 
     }
 }
