@@ -124,4 +124,13 @@ public class Mapper {
 
         return categoryResponseDto;
     }
+
+    public static Category toCategory(CategoryRequestDto categoryRequestDto)
+    {
+        Category category= new Category();
+
+        category.setCategoryName(categoryRequestDto.getCategoryName());
+
+        return category;
+    }
 }
