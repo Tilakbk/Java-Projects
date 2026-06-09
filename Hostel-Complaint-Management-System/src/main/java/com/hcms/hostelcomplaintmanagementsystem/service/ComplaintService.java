@@ -84,4 +84,15 @@ public class ComplaintService {
 
 
     }
+
+    public List<ComplaintResponseDto> getComplaintByStudent(UUID studentId) {
+
+        List<Complaint> complaints= studentRepo.findById(studentId).orElseThrow(()->new StudentNotValidException(studentId+" : Student with this id does not exist")).getComplaints();
+
+        return complaints.stream()
+                .map(Mapper::toComplaintResponseDto)
+                .toList();
+
+
+    }
 }

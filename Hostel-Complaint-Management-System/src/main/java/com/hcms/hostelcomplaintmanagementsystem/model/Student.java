@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -36,5 +37,9 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "hostel_id", nullable = false)
     private Hostel hostel;
+
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
+    private List<Complaint> complaints;
+
 
 }

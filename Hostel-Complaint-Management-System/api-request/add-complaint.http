@@ -3,7 +3,7 @@ POST http://localhost:8080/api/complaint
 Content-Type: application/json
 
 {
-  "categoryName": "Water",
-  "description": "Water heater not working",
-  "studentName": "Dev sunar"
+  "categoryName": "Electronic",
+  "description": "Room light is not working",
+  "studentName": "Tilak B.K"
 }

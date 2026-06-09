@@ -45,5 +45,11 @@ public class ComplaintController {
         return ResponseEntity.ok(complaintService.getComplaintByStatus(status));
     }
 
+    @GetMapping("/complaint/student/{studentId}")
+    public ResponseEntity<List<ComplaintResponseDto>> getComplaintByStudent(@PathVariable UUID studentId)
+    {
+        return ResponseEntity.ok(complaintService.getComplaintByStudent(studentId));
+    }
+
 
 }
