@@ -1,6 +1,10 @@
 package com.hcms.hostelcomplaintmanagementsystem.controller;
 
 import com.hcms.hostelcomplaintmanagementsystem.service.CategoryService;
+import jakarta.validation.Valid;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,4 +17,11 @@ public class CategoryController {
     public CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
+
+    @PostMapping("/category")
+    public ResponseEntity<CategoryResponseDto> addCategory(@Valid @RequestBody CategoryRequestDto categoryRequestDto)
+    {
+        return ResponseEntity.ok(categoryService.addCategory(categoryRequestDto));
+    }
+
 }
