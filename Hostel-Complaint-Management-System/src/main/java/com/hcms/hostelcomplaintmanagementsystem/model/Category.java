@@ -18,5 +18,5 @@ public class Category {
     private UUID categoryId;
 
     @NotNull
-    private String category_name;
+    private String categoryName;
 }
