@@ -7,5 +7,5 @@ import lombok.Data;
 public class CategoryRequestDto {
 
     @NotBlank(message = "Name of the category is mandatory")
-    private String CategoryName;
+    private String categoryName;
 }

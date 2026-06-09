@@ -1,0 +1,9 @@
+### Post request for category
+
+POST http://localhost:8080/api/category
+Content-Type: application/json
+
+{
+  "categoryName": "Bathroom shower not working"
+}
+
