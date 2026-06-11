@@ -6,6 +6,6 @@ public enum Role {
     SYSTEM_ADMIN,
     WARDEN,
     STAFF,
-    STUDENT;
+    STUDENT
 
 }
