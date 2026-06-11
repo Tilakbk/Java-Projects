@@ -1,4 +1,11 @@
 package com.hcms.hostelcomplaintmanagementsystem.user;
 
-public class Role {
+
+public enum Role {
+
+    SYSTEM_ADMIN,
+    WARDEN,
+    STAFF,
+    STUDENT;
+
 }
