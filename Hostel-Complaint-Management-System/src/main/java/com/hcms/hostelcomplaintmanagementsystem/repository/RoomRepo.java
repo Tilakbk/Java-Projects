@@ -12,7 +12,7 @@ import java.util.UUID;
 public interface RoomRepo extends JpaRepository<Room, UUID> {
     List<Room> findByHostel_HostelId(UUID hostelHostelId);
 
-    boolean existsByRoomNumber(int roomNumber);
+
 
     boolean existsByRoomNumberAndHostel_HostelId(int roomNumber, UUID hostelHostelId);
 }

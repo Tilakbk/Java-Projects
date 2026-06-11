@@ -9,6 +9,7 @@ import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StaffNotValidE
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StudentNotValidException;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Complaint;
+import com.hcms.hostelcomplaintmanagementsystem.model.ResolutionLog;
 import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.repository.CategoryRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.ComplaintRepo;
@@ -16,6 +17,7 @@ import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StudentRepo;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -154,6 +156,25 @@ public class ComplaintService {
         return complaints.stream()
                 .map(Mapper::toComplaintResponseDto)
                 .toList();
+
+    }
+
+    public ComplaintResponseDto markComplaintResolved(UUID id, String actionTaken, UUID staffId) {
+
+        Complaint complaint= complaintRepo.findById(id).orElseThrow(()-> new ComplaintNotFoundException(id+" : Complaint with this id does not exist"));
+
+        Staff staff= staffRepo.findById(staffId).orElseThrow(()->new StaffNotValidException(staffId+" : Staff with this id does not exist"));
+
+        ResolutionLog log= new ResolutionLog();
+        log.setComplaint(complaint);
+        log.setStaff(staff);
+        log.setActionTaken(actionTaken);
+        log.setResolved_at(LocalDateTime.now());
+
+        complaint.getResolutionLogs().add(log);
+        complaint.setStatus("Resolved");
+
+        return Mapper.toComplaintResponseDto(complaintRepo.save(complaint));
 
     }
 }

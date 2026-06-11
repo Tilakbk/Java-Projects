@@ -1,8 +1,6 @@
     package com.hcms.hostelcomplaintmanagementsystem.repository;
 
     import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
-    import jakarta.validation.constraints.Email;
-    import jakarta.validation.constraints.NotBlank;
     import org.springframework.data.jpa.repository.JpaRepository;
     import org.springframework.stereotype.Repository;
 
@@ -14,9 +12,6 @@
         boolean existsByEmail(String email);
         boolean existsByPhone(String phone);
         List<Staff> findAllByRole(String role);
-
-        boolean existsByRole(String role);
-
         boolean existsByEmailAndStaffIdNot(String email, UUID staffId);
 
         boolean existsByPhoneAndStaffIdNot(String phone, UUID staffId);

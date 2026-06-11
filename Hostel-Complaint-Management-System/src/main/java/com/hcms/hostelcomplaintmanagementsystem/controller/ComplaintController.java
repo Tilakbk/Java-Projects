@@ -77,4 +77,10 @@ public class ComplaintController {
         return ResponseEntity.ok(complaintService.getComplaintByStaff(staffId));
     }
 
+    @PutMapping("/complaint/{id}/resolve")
+    public ResponseEntity<ComplaintResponseDto> markComplaintResolved(@PathVariable UUID id,@RequestParam String actionTaken, @RequestParam UUID staffId)
+    {
+        return ResponseEntity.ok(complaintService.markComplaintResolved(id,actionTaken,staffId));
+    }
+
 }
