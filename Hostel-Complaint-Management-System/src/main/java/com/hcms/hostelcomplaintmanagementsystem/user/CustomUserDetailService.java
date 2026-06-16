@@ -19,11 +19,14 @@ public class CustomUserDetailService implements UserDetailsService {
 
     @Override
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(@NonNull String email) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername( String email) throws UsernameNotFoundException {
 
         log.debug("Attempting to load user by email: {}",email);
-        User user= userRepo.findByEmail(email).orElseThrow(()->new UsernameNotFoundException(email+"User with this email not found"));
+        UserPrinciple user= userRepo.findByEmail(email).map(UserPrinciple::new).orElseThrow(()->new UsernameNotFoundException(email+"User with this email not found"));
 
+        log.debug("User successfully loaded with id : {} and role : {}",user.getUsername(),user.getUser().getRole());
+
+        return user;
 
 
     }

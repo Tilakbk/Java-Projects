@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.config;
 
+import com.hcms.hostelcomplaintmanagementsystem.user.CustomUserDetailService;
 import com.hcms.hostelcomplaintmanagementsystem.user.UserPrinciple;
 import com.hcms.hostelcomplaintmanagementsystem.user.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -20,17 +21,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserRepo userRepo;
+    private final CustomUserDetailService customUserDetailService;
 
-    @Bean
-    public UserDetailsService userDetailsService()
-    {
-        return username -> userRepo.findByEmail(username)
-                .map(UserPrinciple::new)
-                .orElseThrow(()->new UsernameNotFoundException("User not found"+username));
-
-
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder()
@@ -41,7 +33,7 @@ public class ApplicationConfig {
     @Bean
     public AuthenticationProvider authenticationProvider()
     {
-        DaoAuthenticationProvider provider= new DaoAuthenticationProvider(userDetailsService());
+        DaoAuthenticationProvider provider= new DaoAuthenticationProvider(customUserDetailService);
         provider.setPasswordEncoder(passwordEncoder());
 
         return provider;
