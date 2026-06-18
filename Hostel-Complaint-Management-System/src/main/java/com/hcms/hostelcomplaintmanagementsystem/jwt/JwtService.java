@@ -77,13 +77,13 @@ public class JwtService {
         }
     }
 
-    private String extractUsername(String token) {
+    public String extractUsername(String token) {
 
         return extractClaim(token,Claims::getSubject);
 
     }
 
-    private Date extractExpirationDate(String token) {
+    public Date extractExpirationDate(String token) {
 
         return extractClaim(token,Claims::getExpiration);
     }
@@ -106,7 +106,7 @@ public class JwtService {
     }
 
 
-    private boolean isTokenExpired(String token) {
+    public boolean isTokenExpired(String token) {
 
         return extractExpirationDate(token).before(new Date());
 
