@@ -23,6 +23,8 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+
+        log.warn("Authentication failed for {} - deu to {}",request.getRequestURI(),authException.getMessage());
         ApiErrorDto apiErrorDto= new ApiErrorDto(HttpStatus.UNAUTHORIZED.value(),"Auth failed",authException.getMessage(),request.getRequestURI());
 
         response.setStatus(HttpStatus.UNAUTHORIZED.value());

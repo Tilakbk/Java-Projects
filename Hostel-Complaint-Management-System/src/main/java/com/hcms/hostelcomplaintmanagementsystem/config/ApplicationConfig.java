@@ -1,9 +1,11 @@
 package com.hcms.hostelcomplaintmanagementsystem.config;
 
+import com.hcms.hostelcomplaintmanagementsystem.jwt.JwtAuthenticationFilter;
 import com.hcms.hostelcomplaintmanagementsystem.user.CustomUserDetailService;
 import com.hcms.hostelcomplaintmanagementsystem.user.UserPrinciple;
 import com.hcms.hostelcomplaintmanagementsystem.user.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -46,7 +48,14 @@ public class ApplicationConfig {
        return authenticationConfiguration.getAuthenticationManager();
     }
 
-
+    @Bean
+    public FilterRegistrationBean<JwtAuthenticationFilter> jwtFilterRegistration(
+            JwtAuthenticationFilter filter) throws Exception {
+        FilterRegistrationBean<JwtAuthenticationFilter> registration =
+                new FilterRegistrationBean<>(filter);
+        registration.setEnabled(false);
+        return registration;
+    }
 
 
 }
