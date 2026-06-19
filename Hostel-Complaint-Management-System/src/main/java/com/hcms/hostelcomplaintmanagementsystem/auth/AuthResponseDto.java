@@ -1,14 +1,11 @@
 package com.hcms.hostelcomplaintmanagementsystem.auth;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.UUID;
 
-@Getter
-@Builder
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class AuthResponseDto {

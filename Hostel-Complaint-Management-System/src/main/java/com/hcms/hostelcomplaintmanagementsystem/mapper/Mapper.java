@@ -1,7 +1,10 @@
 package com.hcms.hostelcomplaintmanagementsystem.mapper;
 
+import com.hcms.hostelcomplaintmanagementsystem.auth.AuthResponseDto;
+import com.hcms.hostelcomplaintmanagementsystem.auth.RegisterRequestDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.*;
 import com.hcms.hostelcomplaintmanagementsystem.model.*;
+import com.hcms.hostelcomplaintmanagementsystem.user.User;
 
 
 public class Mapper {
@@ -170,5 +173,25 @@ public class Mapper {
 
 
         return complaint;
+    }
+
+    public static User toUser(RegisterRequestDto requestDto)
+    {
+        User user= new User();
+
+        user.setEmail(requestDto.getEmail());
+        user.setFullName(requestDto.getFullName());
+
+        return user;
+    }
+
+    public static AuthResponseDto toResponseDto(User user)
+    {
+        AuthResponseDto authResponseDto= new AuthResponseDto();
+        authResponseDto.setFullName(user.getFullName());
+        authResponseDto.setRole(user.getRole().name());
+        authResponseDto.setUserId(user.getUserId());
+
+        return authResponseDto;
     }
 }

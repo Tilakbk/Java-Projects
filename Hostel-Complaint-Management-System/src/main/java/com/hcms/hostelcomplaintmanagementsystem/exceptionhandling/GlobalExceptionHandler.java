@@ -146,6 +146,17 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiErrorDto);
     }
 
+    @ExceptionHandler(IllegalStateFoundException.class)
+    public ResponseEntity<ApiErrorDto> handleIllegalStateFoundException(IllegalStateFoundException e, HttpServletRequest request)
+    {
+        log.warn("Not found,{}",e.getMessage());
+
+        ApiErrorDto apiErrorDto = new ApiErrorDto(HttpStatus.NOT_FOUND.value(),"authenticated user not found ", e.getMessage(),request.getRequestURI());
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(apiErrorDto);
+    }
+
+
 
 
 }
