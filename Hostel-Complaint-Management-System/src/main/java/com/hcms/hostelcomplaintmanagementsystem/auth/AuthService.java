@@ -2,7 +2,6 @@ package com.hcms.hostelcomplaintmanagementsystem.auth;
 
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.EmailAlreadyExistsException;
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.IllegalStateFoundException;
-import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.illegalStateFoundException;
 import com.hcms.hostelcomplaintmanagementsystem.jwt.JwtService;
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.user.Role;
@@ -19,7 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
-import java.util.Map;
+
 
 @Service
 @RequiredArgsConstructor
@@ -65,6 +64,15 @@ public class AuthService {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequestDto.getEmail(),loginRequestDto.getPassword()));
 
         User authenticatedUser= userRepo.findByEmail(loginRequestDto.getEmail()).orElseThrow(()-> new IllegalStateFoundException(loginRequestDto.getEmail()+" Authenticated user with this email is not in db"));
+
+        HashMap<String, Object> extraClaim= new HashMap<>();
+        extraClaim.put("role",authenticatedUser.getRole().name());
+        AuthResponseDto authResponseDto = Mapper.toResponseDto(authenticatedUser);
+        authResponseDto.setToken(jwtService.generateToken(extraClaim,new UserPrinciple(authenticatedUser)));
+
+        return authResponseDto;
+
+
 
     }
 }
