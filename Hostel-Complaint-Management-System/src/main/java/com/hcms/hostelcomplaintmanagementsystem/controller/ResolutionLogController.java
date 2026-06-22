@@ -56,7 +56,7 @@ public class ResolutionLogController {
         return ResponseEntity.ok(resolutionLogService.updateResolutionLog(resolutionLogRequestDto,id));
     }
 
-    @DeleteMapping("/resolutio-log/{id}")
+    @DeleteMapping("/resolution-log/{id}")
     public ResponseEntity<String> deleteResolutionLog(@PathVariable UUID id)
     {
         resolutionLogService.deleteResolutionLog(id);

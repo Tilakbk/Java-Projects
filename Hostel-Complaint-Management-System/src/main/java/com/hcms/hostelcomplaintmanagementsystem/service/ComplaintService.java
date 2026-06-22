@@ -120,7 +120,7 @@ public class ComplaintService {
 
         if (complaintRequestDto.getDescription()!=null)
         {
-            complaint.setDescription(complaint.getDescription());
+            complaint.setDescription(complaintRequestDto.getDescription());
         }
 
         return Mapper.toComplaintResponseDto(complaintRepo.save(complaint));

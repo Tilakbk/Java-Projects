@@ -113,7 +113,7 @@ public class Mapper {
     {
         ResolutionLog resolutionLog= new ResolutionLog();
 
-        resolutionLog.setActionTaken(resolutionLog.getActionTaken());
+        resolutionLog.setActionTaken(resolutionLogRequestDto.getActionTaken());
 
         return resolutionLog;
     }

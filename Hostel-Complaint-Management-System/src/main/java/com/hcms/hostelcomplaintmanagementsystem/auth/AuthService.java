@@ -34,7 +34,7 @@ public class AuthService {
     @Transactional
     public AuthResponseDto register(RegisterRequestDto registerRequestDto)
     {
-        log.debug("Attempting to login user with email, {}", registerRequestDto.getEmail());
+        log.debug("Attempting to Register user with email, {}", registerRequestDto.getEmail());
 
         if (userRepo.existsByEmail(registerRequestDto.getEmail()))
         {
