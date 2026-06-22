@@ -9,24 +9,22 @@ import com.hcms.hostelcomplaintmanagementsystem.model.Student;
 import com.hcms.hostelcomplaintmanagementsystem.repository.HostelRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.RoomRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StudentRepo;
+import com.hcms.hostelcomplaintmanagementsystem.user.Role;
+import com.hcms.hostelcomplaintmanagementsystem.user.UserAccountService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
 
     private final StudentRepo studentRepo;
     private final RoomRepo roomRepo;
     private final HostelRepo hostelRepo;
-
-    public StudentService(StudentRepo studentRepo, RoomRepo roomRepo, HostelRepo hostelRepo)
-    {
-        this.studentRepo=studentRepo;
-        this.roomRepo=roomRepo;
-        this.hostelRepo = hostelRepo;
-    }
+    private final UserAccountService userAccountService;
 
 
     public List<StudentResponseDto> getAllStudent()
@@ -53,6 +51,8 @@ public class StudentService {
         Student student= Mapper.toStudent(studentRequestDto);
         student.setRoom(roomRepo.findById(studentRequestDto.getRoom_id()).orElseThrow(()->new RoomNotValidException(studentRequestDto.getRoom_id()+" Room with this id does not exists") ));
         student.setHostel(hostelRepo.findById(studentRequestDto.getHostel_id()).orElseThrow(()->new HostelNotValidException(studentRequestDto.getHostel_id()+" Hostel with this Id does not exist")));
+
+        userAccountService.createUser(student.getName(), student.getEmail(), studentRequestDto.getPassword(), Role.STUDENT,student.getHostel(),student,null);
 
         return Mapper.toStudentResponseDto(studentRepo.save(student));
 

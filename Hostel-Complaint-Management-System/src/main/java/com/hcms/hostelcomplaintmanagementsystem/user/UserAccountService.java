@@ -1,6 +1,7 @@
 package com.hcms.hostelcomplaintmanagementsystem.user;
 
 import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.EmailAlreadyExistsException;
+import com.hcms.hostelcomplaintmanagementsystem.model.Hostel;
 import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.model.Student;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,7 @@ public class UserAccountService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public User createUser(String fullName, String email, String password, Role role, Student student, Staff staff)
+    public User createUser(String fullName, String email, String password, Role role, Hostel hostel, Student student, Staff staff)
     {
         User user= new User();
         user.setFullName(fullName);
@@ -31,6 +32,6 @@ public class UserAccountService {
         user.setStudent(student);
         user.setStaff(staff);
 
-        return user;
+        return userRepo.save(user);
     }
 }
