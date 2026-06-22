@@ -16,6 +16,7 @@ public class StaffRequestDto {
     private String email;
 
     @NotBlank(message = "Role is required")
+    @Pattern(regexp = "WARDEN|STAFF", message = "Role must be WARDEN or STAFF")
     private String role;
 
     @NotBlank(message = "Phone is required")

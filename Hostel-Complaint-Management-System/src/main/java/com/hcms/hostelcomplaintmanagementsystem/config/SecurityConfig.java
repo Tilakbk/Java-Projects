@@ -39,7 +39,7 @@ public class SecurityConfig {
     {
        return httpSecurity
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors-> cors.configure(httpSecurity))
+                .cors(cors-> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth-> auth
 
 //                       For Public access

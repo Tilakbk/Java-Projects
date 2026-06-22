@@ -1,6 +1,8 @@
 package com.hcms.hostelcomplaintmanagementsystem.user;
 
 import com.hcms.hostelcomplaintmanagementsystem.model.Hostel;
+import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
+import com.hcms.hostelcomplaintmanagementsystem.model.Student;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -38,8 +40,16 @@ public class User {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "hostel_d")
+    @JoinColumn(name = "hostel_id",nullable = true)
     private Hostel hostel;
+
+    @OneToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
+
+    @OneToOne
+    @JoinColumn(name = "staff_id")
+    private Staff staff;
 
 }
 

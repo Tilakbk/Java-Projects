@@ -1,5 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.model;
 
+import com.hcms.hostelcomplaintmanagementsystem.user.User;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
@@ -40,6 +41,8 @@ public class Student {
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL)
     private List<Complaint> complaints;
+
+
 
 
 }
