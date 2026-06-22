@@ -17,7 +17,7 @@ public class UserAccountService {
     private final PasswordEncoder passwordEncoder;
 
     @Transactional
-    public User createUser(String fullName, String email, String password, Role role, Hostel hostel, Student student, Staff staff)
+    public void createUser(String fullName, String email, String password, Role role, Hostel hostel, Student student, Staff staff)
     {
         User user= new User();
         user.setFullName(fullName);
@@ -32,6 +32,6 @@ public class UserAccountService {
         user.setStudent(student);
         user.setStaff(staff);
 
-        return userRepo.save(user);
+        userRepo.save(user);
     }
 }

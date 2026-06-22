@@ -10,19 +10,21 @@ import com.hcms.hostelcomplaintmanagementsystem.exceptionhandling.StudentNotVali
 import com.hcms.hostelcomplaintmanagementsystem.mapper.Mapper;
 import com.hcms.hostelcomplaintmanagementsystem.model.Staff;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
+import com.hcms.hostelcomplaintmanagementsystem.user.Role;
+import com.hcms.hostelcomplaintmanagementsystem.user.UserAccountService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class StaffService {
 
     private final StaffRepo staffRepo;
+    private final UserAccountService userAccountService;
 
-    public StaffService(StaffRepo staffRepo) {
-        this.staffRepo = staffRepo;
-    }
 
     public List<StaffResponseDto> getAllStaff() {
 
@@ -47,6 +49,14 @@ public class StaffService {
             }
 
             Staff staff = staffRepo.save(Mapper.toStaff(staffRequestDto));
+
+            if (staffRequestDto.getRole().equals("STAFF")) {
+                userAccountService.createUser(staff.getName(), staff.getEmail(), staffRequestDto.getPassword(), Role.STAFF, null, null, staff);
+            }
+
+            else if (staffRequestDto.getRole().equals("WARDEN"))
+                userAccountService.createUser(staff.getName(), staff.getEmail(), staffRequestDto.getPassword(), Role.WARDEN, null, null, staff);
+
 
             return Mapper.toStaffResponseDto(staff);
 

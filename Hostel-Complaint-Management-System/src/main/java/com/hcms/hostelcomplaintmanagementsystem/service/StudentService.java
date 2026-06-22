@@ -52,9 +52,10 @@ public class StudentService {
         student.setRoom(roomRepo.findById(studentRequestDto.getRoom_id()).orElseThrow(()->new RoomNotValidException(studentRequestDto.getRoom_id()+" Room with this id does not exists") ));
         student.setHostel(hostelRepo.findById(studentRequestDto.getHostel_id()).orElseThrow(()->new HostelNotValidException(studentRequestDto.getHostel_id()+" Hostel with this Id does not exist")));
 
-        userAccountService.createUser(student.getName(), student.getEmail(), studentRequestDto.getPassword(), Role.STUDENT,student.getHostel(),student,null);
+        Student savedStudent= studentRepo.save(student);
+        userAccountService.createUser(savedStudent.getName(), savedStudent.getEmail(), studentRequestDto.getPassword(), Role.STUDENT,savedStudent.getHostel(),savedStudent,null);
 
-        return Mapper.toStudentResponseDto(studentRepo.save(student));
+        return Mapper.toStudentResponseDto((savedStudent));
 
     }
 

@@ -1,9 +1,10 @@
 ### Post request for hostel
 POST http://localhost:8080/api/hostel
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1lTVEVNX0FETUlOIiwic3ViIjoiVGlsYWtAZ21haWwuY29tIiwiaWF0IjoxNzgyMTEyNDEzLCJleHAiOjE3ODIxOTg4MTN9.qto59qSzo6l9LGXo7Y17yqcA6bmzkOIxlo3cldXRT_o
 Content-Type: application/json
 
 {
-  "name": "Sagarmatha girls  Hostel",
-  "address": "Bhaktapur",
-  "wardenId": "a1b2c3d4-0001-0000-0000-000000000002"
+  "name": "Sagarmatha Boys  Hostel",
+  "address": "Bharatpur",
+  "wardenId": "4a7b3c2d-1e5f-4a3b-8c2d-1e5f4a3b2c1d"
 }

@@ -60,7 +60,7 @@ public class SecurityConfig {
 
 //                      For WARDEN
 
-                                .requestMatchers(HttpMethod.POST, "/api/staff").hasRole("WARDEN")
+                                .requestMatchers(HttpMethod.POST, "/api/staff").hasAnyRole("WARDEN","SYSTEM_ADMIN")
                                 .requestMatchers(HttpMethod.PUT, "/api/staff/**").hasRole("WARDEN")
                                 .requestMatchers(HttpMethod.PATCH,"/api/staff/**").hasRole("WARDEN")
                                 .requestMatchers(HttpMethod.DELETE, "/api/staff/**").hasRole("WARDEN")

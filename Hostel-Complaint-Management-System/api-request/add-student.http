@@ -1,10 +1,12 @@
 POST http://localhost:8080/api/students
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1lTVEVNX0FETUlOIiwic3ViIjoiVGlsYWtAZ21haWwuY29tIiwiaWF0IjoxNzgyMTEyNDEzLCJleHAiOjE3ODIxOTg4MTN9.qto59qSzo6l9LGXo7Y17yqcA6bmzkOIxlo3cldXRT_o
 Content-Type: application/json
 
 {
-  "name": "Dev sunar",
-  "email": "dev@gmail.com",
-  "phone": "9861915067",
+  "name": "Devi sunar",
+  "email": "devisunar@gmail.com",
+  "phone": "9855081672",
   "hostel_id": "e5c32d5b-4636-44d8-9e87-5d43c9021137",
-  "room_id": "c1a1eafd-e9bb-4592-ab84-10afdb3e8df3"
+  "room_id": "c1a1eafd-e9bb-4592-ab84-10afdb3e8df3",
+  "password": "Devisunar@123"
 }
