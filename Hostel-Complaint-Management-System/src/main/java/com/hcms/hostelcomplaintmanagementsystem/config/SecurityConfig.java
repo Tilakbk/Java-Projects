@@ -46,60 +46,61 @@ public class SecurityConfig {
                                 .requestMatchers("/api/auth/**").permitAll()
 
                                 .requestMatchers("/swagger-ui/**","/v3/api-docs/**").permitAll()
+                                .requestMatchers("/error").permitAll()
 
 
 
-
-//                        For System Admin
-                                .requestMatchers(HttpMethod.POST,"/api/hostel").hasRole("SYSTEM_ADMIN")
-                                .requestMatchers(HttpMethod.GET,"/api/hostel").hasRole("SYSTEM_ADMIN")
-                                .requestMatchers(HttpMethod.GET, "/api/hostel/**").authenticated()
-                                .requestMatchers(HttpMethod.PUT, "/api/hostel/**").hasRole("SYSTEM_ADMIN")
-                                .requestMatchers(HttpMethod.DELETE, "/api/hostel/**").hasRole("SYSTEM_ADMIN")
-
-
-//                      For WARDEN
-
-                                .requestMatchers(HttpMethod.POST, "/api/staff").hasAnyRole("WARDEN","SYSTEM_ADMIN")
-                                .requestMatchers(HttpMethod.PUT, "/api/staff/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.PATCH,"/api/staff/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.DELETE, "/api/staff/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.GET, "/api/staff/**").hasRole("WARDEN")
-
-
-                                .requestMatchers(HttpMethod.POST, "/api/room").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.GET, "/api/room/**").authenticated()
-                                .requestMatchers(HttpMethod.POST, "/api/category").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.PUT, "/api/category/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.DELETE, "/api/category/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.GET, "/api/category/**").authenticated()
-
-                                .requestMatchers(HttpMethod.GET, "/api/students").hasAnyRole("WARDEN", "SYSTEM_ADMIN")
-                                .requestMatchers(HttpMethod.DELETE, "/api/students/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.POST,"/api/students").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.GET, "/api/students/**").authenticated()
-                                .requestMatchers(HttpMethod.PUT, "/api/students/**").authenticated()
-                                .requestMatchers(HttpMethod.PATCH, "/api/students/**").authenticated()
-
-
+//
+//                 For System Admin
+//                                .requestMatchers(HttpMethod.POST,"/api/hostel").hasRole("SYSTEM_ADMIN")
+//                                .requestMatchers(HttpMethod.GET,"/api/hostel").hasRole("SYSTEM_ADMIN")
+//                                .requestMatchers(HttpMethod.GET, "/api/hostel/**").authenticated()
+//                                .requestMatchers(HttpMethod.PUT, "/api/hostel/**").hasRole("SYSTEM_ADMIN")
+//                                .requestMatchers(HttpMethod.DELETE, "/api/hostel/**").hasRole("SYSTEM_ADMIN")
+//
+//
+//                     For WARDEN
+//
+//                                .requestMatchers(HttpMethod.POST, "/api/staff").hasAnyRole("WARDEN","SYSTEM_ADMIN")
+//                                .requestMatchers(HttpMethod.PUT, "/api/staff/**").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.PATCH,"/api/staff/**").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.DELETE, "/api/staff/**").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.GET, "/api/staff/**").hasRole("WARDEN")
+//
+//
+//                                .requestMatchers(HttpMethod.POST, "/api/room").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.GET, "/api/room/**").authenticated()
+//                                .requestMatchers(HttpMethod.POST, "/api/category").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.PUT, "/api/category/**").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.DELETE, "/api/category/**").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.GET, "/api/category/**").authenticated()
+//
+//                                .requestMatchers(HttpMethod.GET, "/api/students").hasAnyRole("WARDEN", "SYSTEM_ADMIN")
+//                                .requestMatchers(HttpMethod.DELETE, "/api/students/**").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.POST,"/api/students").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.GET, "/api/students/**").authenticated()
+//                                .requestMatchers(HttpMethod.PUT, "/api/students/**").authenticated()
+//                                .requestMatchers(HttpMethod.PATCH, "/api/students/**").authenticated()
+//
+//
 //                        For managing complaints
-
-                                .requestMatchers(HttpMethod.POST, "/api/complaint").hasRole("STUDENT")
-                                .requestMatchers(HttpMethod.PUT, "/api/complaint/*/staff/*").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.PUT, "/api/complaint/*/resolve").hasRole("STAFF")
-                                .requestMatchers(HttpMethod.DELETE, "/api/complaint/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.GET, "/api/complaint/**").authenticated()
-                                .requestMatchers(HttpMethod.PUT, "/api/complaint/**").authenticated()
-
-//                        For managing Resolution log
-
-                                .requestMatchers(HttpMethod.POST, "/api/resolution-log").hasRole("STAFF")
-                                .requestMatchers(HttpMethod.PUT, "/api/resolution-log/**").hasRole("STAFF")
-                                .requestMatchers(HttpMethod.DELETE, "/api/resolution-log/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.GET, "/api/resolution-log").hasAnyRole("WARDEN", "SYSTEM_ADMIN")
-                                .requestMatchers(HttpMethod.GET, "/api/resolution-log/**").authenticated()
-
-                                .anyRequest().authenticated()
+//
+//                                .requestMatchers(HttpMethod.POST, "/api/complaint").hasRole("STUDENT")
+//                                .requestMatchers(HttpMethod.PUT, "/api/complaint/*/staff/*").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.PUT, "/api/complaint/*/resolve").hasRole("STAFF")
+//                                .requestMatchers(HttpMethod.DELETE, "/api/complaint/**").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.GET, "/api/complaint/**").authenticated()
+//                                .requestMatchers(HttpMethod.PUT, "/api/complaint/**").authenticated()
+//
+//                       For managing Resolution log
+//
+//                                .requestMatchers(HttpMethod.POST, "/api/resolution-log").hasRole("STAFF")
+//                                .requestMatchers(HttpMethod.PUT, "/api/resolution-log/**").hasRole("STAFF")
+//                                .requestMatchers(HttpMethod.DELETE, "/api/resolution-log/**").hasRole("WARDEN")
+//                                .requestMatchers(HttpMethod.GET, "/api/resolution-log").hasAnyRole("WARDEN", "SYSTEM_ADMIN")
+//                                .requestMatchers(HttpMethod.GET, "/api/resolution-log/**").authenticated()
+//
+                               .anyRequest().authenticated()
                 )
 
                 .exceptionHandling(ex-> ex.authenticationEntryPoint(jwtAuthenticationEntryPoint)
@@ -129,9 +130,6 @@ public class SecurityConfig {
         source.registerCorsConfiguration("/**",corsConfiguration);
 
         return source;
-
-
-
     }
 
 

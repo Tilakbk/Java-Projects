@@ -13,6 +13,5 @@
         boolean existsByPhone(String phone);
         List<Staff> findAllByRole(String role);
         boolean existsByEmailAndStaffIdNot(String email, UUID staffId);
-
         boolean existsByPhoneAndStaffIdNot(String phone, UUID staffId);
     }
