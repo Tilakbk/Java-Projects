@@ -6,7 +6,9 @@ import com.hcms.hostelcomplaintmanagementsystem.dto.StudentResponseDto;
 import com.hcms.hostelcomplaintmanagementsystem.dto.validator.StudentValidatorGroup;
 import com.hcms.hostelcomplaintmanagementsystem.service.StudentService;
 import jakarta.validation.groups.Default;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,28 +17,27 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/api")
+@RequiredArgsConstructor
 public class StudentController {
 
     private final StudentService studentService;
 
-    public StudentController(StudentService studentService)
-    {
-        this.studentService=studentService;
-    }
-
     @GetMapping("/students")
+    @PreAuthorize("hasAnyRole('WARDEN', 'SYSTEM_ADMIN')")
     public ResponseEntity<List<StudentResponseDto>> getAllStudent()
     {
         return ResponseEntity.ok().body(studentService.getAllStudent());
     }
 
     @PostMapping("/students")
+    @PreAuthorize("hasAnyRole('WARDEN', 'SYSTEM_ADMIN')")
     public ResponseEntity<StudentResponseDto> addStudent( @Validated({Default.class, StudentValidatorGroup.class}) @RequestBody StudentRequestDto studentRequestDto)
     {
         return ResponseEntity.ok().body(studentService.addStudent(studentRequestDto));
     }
 
     @GetMapping("/students/{id}")
+    @PreAuthorize("hasAnyRole('WARDEN', 'SYSTEM_ADMIN') or @securityService.isStudentOwner(#id, authentication)")
     public ResponseEntity<StudentResponseDto> getStudentById(@PathVariable UUID id)
     {
         return ResponseEntity.ok().body(studentService.getStudentById(id));
@@ -44,6 +45,7 @@ public class StudentController {
 
 
     @PutMapping("/students/{id}")
+    @PreAuthorize("hasRole('WARDEN') or @securityService.isStudentOwner(#id, authentication)")
     public ResponseEntity<StudentResponseDto> updateStudentById(@Validated({Default.class,StudentValidatorGroup.class}) @RequestBody StudentRequestDto studentRequestDto, @PathVariable UUID id)
     {
         return ResponseEntity.ok().body(studentService.updateStudentById(id,studentRequestDto));
@@ -51,12 +53,14 @@ public class StudentController {
 
 
     @PatchMapping("/students/{id}")
+    @PreAuthorize("hasRole('WARDEN') or @securityService.isStudentOwner(#id, authentication)")
     public ResponseEntity<StudentResponseDto> partiallyUpdateStudentById(@Validated({Default.class}) @RequestBody StudentPatchDto studentPatchDto, @PathVariable UUID id)
     {
         return ResponseEntity.ok().body(studentService.partiallyUpdateStudentById(id,studentPatchDto));
     }
 
     @DeleteMapping("/students/{id}")
+    @PreAuthorize("hasRole('WARDEN')")
     public ResponseEntity<?> deleteStudentById(@PathVariable UUID id)
     {
         studentService.deleteStudentById(id);
