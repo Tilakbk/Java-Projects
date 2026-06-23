@@ -50,15 +50,17 @@ public class SecurityService {
     public boolean isAssignedStaff(UUID complaintId, Authentication auth)
     {
         String email= extractEmail(auth);
+        if (email == null) return false;
 
         return complaintRepo.findById(complaintId)
-                .map(complaint->complaint.getAssignedStaff().getEmail().equals(email))
+                .map(complaint->complaint.getAssignedStaff() != null && complaint.getAssignedStaff().getEmail().equals(email))
                 .orElse(false);
     }
 
     public boolean isResolutionLogStaff(UUID logId, Authentication auth)
     {
         String email= extractEmail(auth);
+        if (email == null) return false;
 
         return resolutionLogRepo.findById(logId)
                 .map(log->log.getStaff().getEmail().equals(email))
@@ -68,6 +70,7 @@ public class SecurityService {
     public boolean isResolutionLogComplaintOwner(UUID logId, Authentication auth)
     {
         String email= extractEmail(auth);
+        if (email == null) return false;
 
         return resolutionLogRepo.findById(logId)
                 .map(log->log.getComplaint().getStudent().getEmail().equals(email))
@@ -76,8 +79,11 @@ public class SecurityService {
 
     private String extractEmail(Authentication authentication)
     {
-        UserPrinciple userPrinciple= (UserPrinciple) authentication.getPrincipal();
-        return userPrinciple.getUsername();
+        if (authentication != null && authentication.getPrincipal() instanceof UserPrinciple) {
+            UserPrinciple userPrinciple= (UserPrinciple) authentication.getPrincipal();
+            return userPrinciple.getUsername();
+        }
+        return null;
     }
 
 
