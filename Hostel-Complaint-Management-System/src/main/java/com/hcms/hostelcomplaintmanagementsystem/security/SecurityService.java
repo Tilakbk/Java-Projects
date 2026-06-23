@@ -56,6 +56,23 @@ public class SecurityService {
                 .orElse(false);
     }
 
+    public boolean isResolutionLogStaff(UUID logId, Authentication auth)
+    {
+        String email= extractEmail(auth);
+
+        return resolutionLogRepo.findById(logId)
+                .map(log->log.getStaff().getEmail().equals(email))
+                .orElse(false);
+    }
+
+    public boolean isResolutionLogComplaintOwner(UUID logId, Authentication auth)
+    {
+        String email= extractEmail(auth);
+
+        return resolutionLogRepo.findById(logId)
+                .map(log->log.getComplaint().getStudent().getEmail().equals(email))
+                .orElse(false);
+    }
 
     private String extractEmail(Authentication authentication)
     {
