@@ -1,9 +1,10 @@
 ### Post request for category
 
 POST http://localhost:8080/api/category
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1lTVEVNX0FETUlOIiwic3ViIjoiVGlsYWtia0BnbWFpbC5jb20iLCJpYXQiOjE3ODIxOTE3NTksImV4cCI6MTc4MjI3ODE1OX0.63CuJOZxUU-tDQ_HT4GuO_XUCwuaP1ouDbn8gTagtHA
 Content-Type: application/json
 
 {
-  "categoryName": "Water pipe broke"
+  "categoryName": "Entertainment"
 }
 

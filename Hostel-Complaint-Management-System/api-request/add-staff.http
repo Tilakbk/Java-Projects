@@ -1,13 +1,13 @@
 ### Post request for staff
 POST http://localhost:8080/api/staff
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1lTVEVNX0FETUlOIiwic3ViIjoiVGlsYWtAZ21haWwuY29tIiwiaWF0IjoxNzgyMTE3MDY5LCJleHAiOjE3ODIyMDM0Njl9.SUccEtwYmWou5tpEbpr5KYNR7WvFn3caolSfQXpWosk
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1lTVEVNX0FETUlOIiwic3ViIjoiVGlsYWtia0BnbWFpbC5jb20iLCJpYXQiOjE3ODIxOTE3NTksImV4cCI6MTc4MjI3ODE1OX0.63CuJOZxUU-tDQ_HT4GuO_XUCwuaP1ouDbn8gTagtHA
 Content-Type: application/json
 
 {
-  "name": "Bikash",
-  "email": "bikash@gmail.com",
-  "phone": "9876543214",
+  "name": "Binita@gmail.com",
+  "email": "binita@gmail.com",
+  "phone": "9840012345",
   "role": "WARDEN",
-  "password": "Bikesh@123"
+  "password": "Binita@123"
 }
 

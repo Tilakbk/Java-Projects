@@ -1,6 +1,6 @@
 ### Post request for hostel
 POST http://localhost:8080/api/hostel
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjoiU1lTVEVNX0FETUlOIiwic3ViIjoiVGlsYWtAZ21haWwuY29tIiwiaWF0IjoxNzgyMTEyNDEzLCJleHAiOjE3ODIxOTg4MTN9.qto59qSzo6l9LGXo7Y17yqcA6bmzkOIxlo3cldXRT_o
+Authorization: Bearer
 Content-Type: application/json
 
 {

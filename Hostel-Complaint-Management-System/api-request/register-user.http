@@ -2,7 +2,7 @@ POST http://localhost:8080/api/auth/register
 Content-Type: application/json
 
 {
-  "email": "Tulasibk@gmail.com",
-  "fullName": "Tulasi Biswakarma",
-  "password": "Tulasi@9862"
+  "email": "Tilakbk@gmail.com",
+  "fullName": "Tilak Biswakarma",
+  "password": "Tilak@9862"
 }

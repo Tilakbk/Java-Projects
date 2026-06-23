@@ -64,7 +64,7 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.PUT, "/api/staff/**").hasRole("WARDEN")
                                 .requestMatchers(HttpMethod.PATCH,"/api/staff/**").hasRole("WARDEN")
                                 .requestMatchers(HttpMethod.DELETE, "/api/staff/**").hasRole("WARDEN")
-                                .requestMatchers(HttpMethod.GET, "/api/staff/**").hasAnyRole("WARDEN", "SYSTEM_ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/api/staff/**").hasRole("WARDEN")
 
 
                                 .requestMatchers(HttpMethod.POST, "/api/room").hasRole("WARDEN")

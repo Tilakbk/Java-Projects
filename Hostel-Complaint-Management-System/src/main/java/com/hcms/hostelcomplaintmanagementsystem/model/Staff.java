@@ -14,7 +14,8 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Staff {
+public class Staff
+{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,8 +40,4 @@ public class Staff {
 
     @OneToMany(mappedBy = "assignedStaff", cascade = CascadeType.ALL)
     private List<Complaint> assignedComplaint;
-
-
-
-
 }
