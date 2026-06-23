@@ -1,6 +1,6 @@
 package com.hcms.hostelcomplaintmanagementsystem.security;
 
-import com.hcms.hostelcomplaintmanagementsystem.model.Student;
+
 import com.hcms.hostelcomplaintmanagementsystem.repository.ComplaintRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.ResolutionLogRepo;
 import com.hcms.hostelcomplaintmanagementsystem.repository.StaffRepo;
@@ -35,6 +35,24 @@ public class SecurityService {
 
         return staffRepo.findById(staffId)
                 .map(staff-> staff.getEmail().equals(email))
+                .orElse(false);
+    }
+
+
+    public boolean isComplaintOwner(UUID complaintId,Authentication auth)
+    {
+        String email= extractEmail(auth);
+        return complaintRepo.findById(complaintId)
+                .map(complaint->complaint.getStudent().getEmail().equals(email))
+                .orElse(false);
+    }
+
+    public boolean isAssignedStaff(UUID complaintId, Authentication auth)
+    {
+        String email= extractEmail(auth);
+
+        return complaintRepo.findById(complaintId)
+                .map(complaint->complaint.getAssignedStaff().getEmail().equals(email))
                 .orElse(false);
     }
 
